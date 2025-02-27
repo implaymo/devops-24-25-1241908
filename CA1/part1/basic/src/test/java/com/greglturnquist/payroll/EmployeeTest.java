@@ -74,4 +74,12 @@ class EmployeeTest {
                 () -> new Employee("Antonio", " ", "Student"));
     }
 
+    @Test
+    void shouldThrowIllegalArgumentExceptionIfDescriptionIsNull() {
+        // arrange
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> new Employee("Antonio", "Silva", null));
+    }
+
 }
