@@ -128,4 +128,14 @@ class EmployeeTest {
         assertEquals("Director", employee.getDescription());
     }
 
+    @Test
+    void shouldSetAndGetUpdatedId() {
+        // arrange
+        Employee employee = new Employee("Antonio", "Silva", "Student");
+        // act
+        employee.setId(1L);
+        // assert
+        assertEquals(1L, employee.getId());
+    }
+
 }
