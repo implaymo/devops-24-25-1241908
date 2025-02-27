@@ -42,6 +42,9 @@ public class Employee {
 		if(!isLastNameValid(lastName)) {
 			throw new IllegalArgumentException("Last name can't be null or empty.");
 		}
+		if(!isDescriptionValid(description)) {
+			throw new IllegalArgumentException("Description can't be null or empty.");
+		}
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.description = description;
@@ -112,6 +115,10 @@ public class Employee {
 
 	private boolean isLastNameValid(String lastName) {
 		return lastName != null && !lastName.trim().isEmpty();
+	}
+
+	private boolean isDescriptionValid(String description) {
+		return description != null && !description.trim().isEmpty();
 	}
 
 
