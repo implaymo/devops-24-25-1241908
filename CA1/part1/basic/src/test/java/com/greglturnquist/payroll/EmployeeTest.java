@@ -58,4 +58,20 @@ class EmployeeTest {
                 () -> new Employee("Antonio", null, "Student"));
     }
 
+    @Test
+    void shouldThrowIllegalArgumentExceptionIfLastNameIsEmpty() {
+        // arrange
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> new Employee("Antonio", "", "Student"));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionIfLastNameIsEmptyWithWhitespace() {
+        // arrange
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> new Employee("Antonio", " ", "Student"));
+    }
+
 }
