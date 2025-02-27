@@ -9,7 +9,9 @@ class EmployeeTest {
     void shouldCreateEmployeeWithDefaultConstructor() {
         // arrange
         // act
+        Employee employee = new Employee();
         // assert
+        assertNotNull(employee);
     }
 
     @Test
