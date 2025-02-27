@@ -80,6 +80,9 @@ public class Employee {
 	}
 
 	public void setFirstName(String firstName) {
+		if (!isFirstNameValid(firstName)) {
+			throw new IllegalArgumentException("First Name can't be null or empty.");
+		}
 		this.firstName = firstName;
 	}
 

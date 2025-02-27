@@ -168,4 +168,13 @@ class EmployeeTest {
                 () -> employee.setFirstName(""));
     }
 
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenSettingFirstNameWithWhitespace() {
+        // arrange
+        Employee employee = new Employee("Antonio", "Silva", "Student");
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> employee.setFirstName("   "));
+    }
+
 }
