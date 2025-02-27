@@ -18,4 +18,11 @@ class EmployeeTest {
         // act
         // assert
     }
+
+    @Test
+    void shouldReturnNullNotCreateEmployeeIfNameNull() {
+        // arrange
+        // act
+        // assert
+    }
 }
