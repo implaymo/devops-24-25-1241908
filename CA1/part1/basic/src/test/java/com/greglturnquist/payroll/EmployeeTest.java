@@ -35,7 +35,7 @@ class EmployeeTest {
     }
 
     @Test
-    void shouldReturnIllegalArgumentExceptionIfNameEmpty() {
+    void shouldThrowIllegalArgumentExceptionIfNameEmpty() {
         // arrange
         // act
         assertThrows(IllegalArgumentException.class,
@@ -43,10 +43,19 @@ class EmployeeTest {
     }
 
     @Test
-    void shouldReturnIllegalArgumentExceptionIfNameEmptyWithWhitespace() {
+    void shouldThrowIllegalArgumentExceptionIfNameEmptyWithWhitespace() {
         // arrange
         // act & assert
         assertThrows(IllegalArgumentException.class,
                 () -> new Employee(" ", "Silva", "Student"));
     }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionIfLastNameIsNull() {
+        // arrange
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> new Employee("Antonio", null, "Student"));
+    }
+
 }
