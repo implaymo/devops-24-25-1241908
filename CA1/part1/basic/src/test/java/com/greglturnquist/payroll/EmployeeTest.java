@@ -21,7 +21,7 @@ class EmployeeTest {
         Employee employee = new Employee("Antonio", "Silva", "Student");
         // assert
         assertNotNull(employee);
-        assertEquals("Gonçalo", employee.getFirstName());
+        assertEquals("Antonio", employee.getFirstName());
         assertEquals("Silva", employee.getLastName());
         assertEquals("Student", employee.getDescription());
     }
