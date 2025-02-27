@@ -27,10 +27,18 @@ class EmployeeTest {
     }
 
     @Test
-    void shouldReturnNullNotCreateEmployeeIfNameNull() {
+    void shouldReturnNullEmployeeIfNameNull() {
         // arrange
         // act
         // assert
         assertThrows(IllegalArgumentException.class, () -> new Employee(null, "Silva", "Student"));
+    }
+
+    @Test
+    void shouldReturnIllegalArgumentExceptionIfNameEmpty() {
+        // arrange
+        // act
+        assertThrows(IllegalArgumentException.class,
+                () -> new Employee("", "Silva", "Student"));
     }
 }
