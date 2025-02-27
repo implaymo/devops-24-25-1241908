@@ -138,4 +138,15 @@ class EmployeeTest {
         assertEquals(1L, employee.getId());
     }
 
+    @Test
+    void shouldReturnCorrectToStringRepresentation() {
+        // arrange
+        Employee employee = new Employee("Antonio", "Silva", "Student");
+        employee.setId(1L);
+        // act
+        String expected = "Employee{id=1, firstName='Antonio', lastName='Silva', description='Student'}";
+        // assert
+        assertEquals(expected, employee.toString());
+    }
+
 }
