@@ -91,6 +91,9 @@ public class Employee {
 	}
 
 	public void setLastName(String lastName) {
+		if (!isLastNameValid(lastName)) {
+			throw new IllegalArgumentException("Last Name can't be null or empty.");
+		}
 		this.lastName = lastName;
 	}
 
