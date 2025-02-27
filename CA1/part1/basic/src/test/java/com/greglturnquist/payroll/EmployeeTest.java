@@ -11,5 +11,11 @@ class EmployeeTest {
         // act
         // assert
     }
-  
+
+    @Test
+    void shouldReturnValidObjectEmployeeWithAllFields() {
+        // arrange
+        // act
+        // assert
+    }
 }
