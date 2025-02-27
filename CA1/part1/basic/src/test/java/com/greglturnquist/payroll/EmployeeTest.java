@@ -30,6 +30,8 @@ class EmployeeTest {
     void shouldReturnNullNotCreateEmployeeIfNameNull() {
         // arrange
         // act
+        Employee employee = new Employee(null, "Silva", "Student");
         // assert
+        assertNull(employee);
     }
 }
