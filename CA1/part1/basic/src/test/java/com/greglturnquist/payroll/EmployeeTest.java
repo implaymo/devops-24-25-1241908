@@ -177,4 +177,13 @@ class EmployeeTest {
                 () -> employee.setFirstName("   "));
     }
 
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenSettingNullLastName() {
+        // arrange
+        Employee employee = new Employee("Antonio", "Silva", "Student");
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> employee.setLastName(null));
+    }
+
 }
