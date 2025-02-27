@@ -18,7 +18,12 @@ class EmployeeTest {
     void shouldReturnValidObjectEmployeeWithAllFields() {
         // arrange
         // act
+        Employee employee = new Employee("Gonçalo", "Silva", "Student");
         // assert
+        assertNotNull(employee);
+        assertEquals("Gonçalo", employee.getFirstName());
+        assertEquals("Silva", employee.getLastName());
+        assertEquals("Student", employee.getDescription());
     }
 
     @Test
