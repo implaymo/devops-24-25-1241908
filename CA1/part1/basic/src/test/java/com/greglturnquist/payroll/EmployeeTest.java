@@ -195,4 +195,13 @@ class EmployeeTest {
                 () -> employee.setLastName(""));
     }
 
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenSettingWhitespaceOnlyLastName() {
+        // arrange
+        Employee employee = new Employee("Antonio", "Silva", "Student");
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> employee.setLastName("   "));
+    }
+
 }
