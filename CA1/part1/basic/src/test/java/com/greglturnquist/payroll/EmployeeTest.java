@@ -118,4 +118,14 @@ class EmployeeTest {
         assertEquals("Gouveia", employee.getLastName());
     }
 
+    @Test
+    void shouldSetAndGetUpdatedDescription() {
+        // arrange
+        Employee employee = new Employee("Antonio", "Silva", "Student");
+        // act
+        employee.setDescription("Director");
+        // assert
+        assertEquals("Director", employee.getDescription());
+    }
+
 }
