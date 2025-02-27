@@ -41,4 +41,12 @@ class EmployeeTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new Employee("", "Silva", "Student"));
     }
+
+    @Test
+    void shouldReturnIllegalArgumentExceptionIfNameEmptyWithWhitespace() {
+        // arrange
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> new Employee(" ", "Silva", "Student"));
+    }
 }
