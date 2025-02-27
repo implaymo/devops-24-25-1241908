@@ -18,7 +18,7 @@ class EmployeeTest {
     void shouldReturnValidObjectEmployeeWithAllFields() {
         // arrange
         // act
-        Employee employee = new Employee("Gonçalo", "Silva", "Student");
+        Employee employee = new Employee("Antonio", "Silva", "Student");
         // assert
         assertNotNull(employee);
         assertEquals("Gonçalo", employee.getFirstName());
@@ -157,6 +157,15 @@ class EmployeeTest {
         // act & assert
         assertThrows(IllegalArgumentException.class,
                 () -> employee.setFirstName(null));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenSettingEmptyFirstName() {
+        // arrange
+        Employee employee = new Employee("Antonio", "Silva", "Student");
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> employee.setFirstName(""));
     }
 
 }
