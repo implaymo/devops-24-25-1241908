@@ -90,4 +90,12 @@ class EmployeeTest {
                 () -> new Employee("Antonio", "Silva", ""));
     }
 
+    @Test
+    void shouldThrowIllegalArgumentExceptionIfDescriptionIsEmptyWithWhitespace() {
+        // arrange
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> new Employee("Antonio", "Silva", " "));
+    }
+
 }
