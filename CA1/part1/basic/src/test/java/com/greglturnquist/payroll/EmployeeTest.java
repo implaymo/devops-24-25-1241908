@@ -149,4 +149,14 @@ class EmployeeTest {
         assertEquals(expected, employee.toString());
     }
 
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenSettingNullFirstName() {
+        // arrange
+        Employee employee = new Employee("Antonio", "Silva", "Student");
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> employee.setFirstName(null));
+    }
+
 }
