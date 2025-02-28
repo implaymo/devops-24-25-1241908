@@ -254,4 +254,17 @@ class EmployeeTest {
         assertTrue(result);
     }
 
+    @Test
+    void shouldReturnFalseWhenComparingEmployeesWithDifferentIds(){
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student");
+        Employee employee2 = new Employee("Antonio", "Silva", "Student");
+        employee1.setId(1L);
+        employee2.setId(2L);
+        // act
+        boolean result = employee1.equals(employee2);
+        // assert
+        assertFalse(result);
+    }
+
 }
