@@ -395,4 +395,13 @@ class EmployeeTest {
         assertEquals(2, employee.getJobYears());
     }
 
+    @Test
+    void shouldGenerateDifferentHashCodesWhenJobYearsDiffer() {
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1);
+        Employee employee2 = new Employee("Antonio", "Silva", "Student", 2);
+        // act & assert
+        assertNotEquals(employee1.hashCode(), employee2.hashCode());
+    }
+
 }
