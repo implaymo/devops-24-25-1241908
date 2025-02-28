@@ -322,7 +322,7 @@ class EmployeeTest {
     }
 
     @Test
-    void shouldReturnSameHashCodeWhenEmployeeIsTheSame(){
+    void shouldGenerateSameHashCodeWhenEmployeeIsTheSame(){
         // arrange
         // act
         Employee employee1 = new Employee("Antonio", "Silva", "Student");
@@ -330,4 +330,15 @@ class EmployeeTest {
         // assert
         assertEquals(employee1.hashCode(), employee2.hashCode());
     }
+
+    @Test
+    void shouldGenerateDifferentHashCodeWhenEmployeesHaveDifferentFirstName(){
+        // arrange
+        // act
+        Employee employee1 = new Employee("Antonio", "Silva", "Student");
+        Employee employee2 = new Employee("John", "Silva", "Student");
+        // assert
+        assertNotEquals(employee1.hashCode(), employee2.hashCode());
+    }
+
 }
