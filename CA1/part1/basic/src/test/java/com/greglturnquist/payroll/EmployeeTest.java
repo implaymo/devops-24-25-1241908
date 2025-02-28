@@ -25,7 +25,7 @@ class EmployeeTest {
         assertEquals("Antonio", employee.getFirstName());
         assertEquals("Silva", employee.getLastName());
         assertEquals("Student", employee.getDescription());
-        assertEquals("1", employee.getJobYears());
+        assertEquals(1, employee.getJobYears());
     }
 
     @Test
