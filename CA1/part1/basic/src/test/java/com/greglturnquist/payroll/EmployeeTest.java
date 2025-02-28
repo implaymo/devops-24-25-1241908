@@ -142,10 +142,10 @@ class EmployeeTest {
     @Test
     void shouldReturnCorrectToStringRepresentation() {
         // arrange
-        Employee employee = new Employee("Antonio", "Silva", "Student");
+        Employee employee = new Employee("Antonio", "Silva", "Student", 1);
         employee.setId(1L);
         // act
-        String expected = "Employee{id=1, firstName='Antonio', lastName='Silva', description='Student'}";
+        String expected = "Employee{id=1, firstName='Antonio', lastName='Silva', description='Student', jobYears=1}";
         // assert
         assertEquals(expected, employee.toString());
     }
