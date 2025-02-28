@@ -369,4 +369,27 @@ class EmployeeTest {
         assertNotEquals(employee1.hashCode(), employee2.hashCode());
     }
 
+    @Test
+    void shouldCreateEmployeeWithZeroJobYears(){
+        // arrange
+        Employee employee = new Employee("Antonio", "Silva", "Student", 0);
+        // act & assert
+        assertNotNull(employee);
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenJobYearsNegative() {
+        // arrange
+        // act & assert
+        assertThrows(IllegalArgumentException.class, () -> new Employee("Antonio", "Silva", "Student", -1));
+    }
+
+    @Test
+    void shouldGetEmployeeJobYears(){
+        // arrange
+        Employee employee = new Employee("Antonio", "Silva", "Student", 1);
+        // act & assert
+        assertEquals(1, employee.getJobYears());
+    }
+
 }
