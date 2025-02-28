@@ -46,6 +46,9 @@ public class Employee {
 		if(!isDescriptionValid(description)) {
 			throw new IllegalArgumentException("Description can't be null or empty.");
 		}
+		if(!isJobYearsValid(jobYears)) {
+			throw new IllegalArgumentException("Job years can't be null or empty.");
+		}
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.description = description;
@@ -110,6 +113,14 @@ public class Employee {
 		this.description = description;
 	}
 
+	public int getJobYears() {
+		return jobYears;
+	}
+
+	public void setJobYears(int jobYears) {
+
+	}
+
 	@Override
 	public String toString() {
 		return "Employee{" +
@@ -130,6 +141,10 @@ public class Employee {
 
 	private boolean isDescriptionValid(String description) {
 		return description != null && !description.trim().isEmpty();
+	}
+
+	private boolean isJobYearsValid(int jobYears) {
+		return jobYears >= 0;
 	}
 
 
