@@ -232,7 +232,7 @@ class EmployeeTest {
     }
 
     @Test
-    void shouldCheckThatEmployeeFieldsHasTheSameFields() {
+    void shouldReturnTrueIfEmployeesFieldsHasTheSameFields() {
         // arrange
         Employee employee1 = new Employee("Antonio", "Silva", "Student");
         Employee employee2 = new Employee("Antonio", "Silva", "Student");
@@ -240,6 +240,16 @@ class EmployeeTest {
         employee2.setId(1L);
         // act
         boolean result = employee1.equals(employee2);
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    void shouldReturnWhenComparingTheSameEmployee(){
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student");
+        // act
+        boolean result = employee1.equals(employee1);
         // assert
         assertTrue(result);
     }
