@@ -300,4 +300,14 @@ class EmployeeTest {
         assertFalse(result);
     }
 
+    @Test
+    void shouldReturnFalseWhenComparingEmployeeWithNullValue(){
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student");
+        // act
+        boolean result = employee1.equals(null);
+        // assert
+        assertFalse(result);
+    }
+
 }
