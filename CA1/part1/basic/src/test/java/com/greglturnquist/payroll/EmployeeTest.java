@@ -18,12 +18,13 @@ class EmployeeTest {
     void shouldReturnValidObjectEmployeeWithAllFields() {
         // arrange
         // act
-        Employee employee = new Employee("Antonio", "Silva", "Student");
+        Employee employee = new Employee("Antonio", "Silva", "Student", 1);
         // assert
         assertNotNull(employee);
         assertEquals("Antonio", employee.getFirstName());
         assertEquals("Silva", employee.getLastName());
         assertEquals("Student", employee.getDescription());
+        assertEquals("1", employee.getJobYears());
     }
 
     @Test
@@ -367,4 +368,5 @@ class EmployeeTest {
         // act & assert
         assertNotEquals(employee1.hashCode(), employee2.hashCode());
     }
+
 }
