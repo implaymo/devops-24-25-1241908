@@ -47,7 +47,7 @@ public class Employee {
 			throw new IllegalArgumentException("Description can't be null or empty.");
 		}
 		if(!isJobYearsValid(jobYears)) {
-			throw new IllegalArgumentException("Job years can't be null or empty.");
+			throw new IllegalArgumentException("Job years can't be negative.");
 		}
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -119,7 +119,7 @@ public class Employee {
 
 	public void setJobYears(int jobYears) {
 		if(!isJobYearsValid(jobYears)) {
-			throw new IllegalArgumentException("Job years can't be null or empty.");
+			throw new IllegalArgumentException("Job years can't be negative.");
 		}
 		this.jobYears = jobYears;
 	}

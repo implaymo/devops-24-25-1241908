@@ -230,7 +230,7 @@ class EmployeeTest {
         Employee employee = new Employee("Antonio", "Silva", "Student", 1);
         // act & assert
         assertThrows(IllegalArgumentException.class,
-                () -> employee.setFirstName("   "));
+                () -> employee.setDescription("   "));
     }
 
     @Test
@@ -402,6 +402,14 @@ class EmployeeTest {
         Employee employee2 = new Employee("Antonio", "Silva", "Student", 2);
         // act & assert
         assertNotEquals(employee1.hashCode(), employee2.hashCode());
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenSettingJobYearsLesserThanZero() {
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1);
+        // act & assert
+        assertThrows(IllegalArgumentException.class, () -> employee1.setJobYears(-1));
     }
 
 }
