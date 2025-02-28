@@ -102,7 +102,7 @@ class EmployeeTest {
     @Test
     void shouldSetAndGetUpdatedFirstName() {
         // arrange
-        Employee employee = new Employee("Antonio", "Silva", "Student");
+        Employee employee = new Employee("Antonio", "Silva", "Student", 1);
         // act
         employee.setFirstName("João");
         // assert
