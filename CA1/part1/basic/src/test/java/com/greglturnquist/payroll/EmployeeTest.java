@@ -278,4 +278,14 @@ class EmployeeTest {
         assertFalse(result);
     }
 
+    @Test
+    void shouldReturnFalseWhenComparingEmployeesWithDifferentLastName(){
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student");
+        Employee employee2 = new Employee("Antonio", "Gouveia", "Student");
+        // act
+        boolean result = employee1.equals(employee2);
+        // assert
+        assertFalse(result);
+    }
 }
