@@ -213,4 +213,13 @@ class EmployeeTest {
                 () -> employee.setDescription(null));
     }
 
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenSettingEmptyDescription() {
+        // arrange
+        Employee employee = new Employee("Antonio", "Silva", "Student");
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> employee.setDescription(""));
+    }
+
 }
