@@ -80,7 +80,7 @@ class EmployeeTest {
         // arrange
         // act & assert
         assertThrows(IllegalArgumentException.class,
-                () -> new Employee("Antonio", "Silva", null));
+                () -> new Employee("Antonio", "Silva", null, 1));
     }
 
     @Test
