@@ -222,4 +222,13 @@ class EmployeeTest {
                 () -> employee.setDescription(""));
     }
 
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenSettingWhitespaceOnlyDescription() {
+        // arrange
+        Employee employee = new Employee("Antonio", "Silva", "Student");
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> employee.setFirstName("   "));
+    }
+
 }
