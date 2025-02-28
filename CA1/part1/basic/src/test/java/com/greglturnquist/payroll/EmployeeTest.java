@@ -48,7 +48,7 @@ class EmployeeTest {
         // arrange
         // act & assert
         assertThrows(IllegalArgumentException.class,
-                () -> new Employee(" ", "Silva", "Student"));
+                () -> new Employee(" ", "Silva", "Student", 1));
     }
 
     @Test
