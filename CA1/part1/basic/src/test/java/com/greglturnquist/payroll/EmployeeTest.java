@@ -358,4 +358,13 @@ class EmployeeTest {
         // act & assert
         assertNotEquals(employee1.hashCode(), employee2.hashCode());
     }
+
+    @Test
+    void shouldGenerateDifferentHashCodesWhenDescriptionDiffer() {
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student");
+        Employee employee2 = new Employee("Antonio", "Silva", "Director");
+        // act & assert
+        assertNotEquals(employee1.hashCode(), employee2.hashCode());
+    }
 }
