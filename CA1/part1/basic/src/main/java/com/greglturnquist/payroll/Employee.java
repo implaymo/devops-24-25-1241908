@@ -118,7 +118,10 @@ public class Employee {
 	}
 
 	public void setJobYears(int jobYears) {
-
+		if(!isJobYearsValid(jobYears)) {
+			throw new IllegalArgumentException("Job years can't be null or empty.");
+		}
+		this.jobYears = jobYears;
 	}
 
 	@Override
