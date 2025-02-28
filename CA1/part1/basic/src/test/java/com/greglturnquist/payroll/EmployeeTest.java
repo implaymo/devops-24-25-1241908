@@ -324,21 +324,29 @@ class EmployeeTest {
     @Test
     void shouldGenerateSameHashCodeWhenEmployeeIsTheSame(){
         // arrange
-        // act
         Employee employee1 = new Employee("Antonio", "Silva", "Student");
         Employee employee2 = new Employee("Antonio", "Silva", "Student");
-        // assert
+        // act & assert
         assertEquals(employee1.hashCode(), employee2.hashCode());
     }
 
     @Test
     void shouldGenerateDifferentHashCodeWhenEmployeesHaveDifferentFirstName(){
         // arrange
-        // act
         Employee employee1 = new Employee("Antonio", "Silva", "Student");
         Employee employee2 = new Employee("John", "Silva", "Student");
-        // assert
+        // act & assert
         assertNotEquals(employee1.hashCode(), employee2.hashCode());
     }
 
+    @Test
+    void shouldGenerateDifferentHashCodesWhenIDsDiffer() {
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student");
+        Employee employee2 = new Employee("Antonio", "Silva", "Student");
+        employee1.setId(1L);
+        employee2.setId(2L);
+        // act & assert
+        assertNotEquals(employee1.hashCode(), employee2.hashCode());
+    }
 }
