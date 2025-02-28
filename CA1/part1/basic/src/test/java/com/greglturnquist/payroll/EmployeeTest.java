@@ -310,4 +310,15 @@ class EmployeeTest {
         assertFalse(result);
     }
 
+    @Test
+    void shouldReturnFalseWhenComparingEmployeeWithDifferentClass() {
+        // arrange
+        Employee employee = new Employee("Antonio", "Silva", "Student");
+        String notAnEmployee = "This is a string, not an Employee";
+        // act
+        boolean result = employee.equals(notAnEmployee);
+        // assert
+        assertFalse(result);
+    }
+
 }
