@@ -1,6 +1,7 @@
 package com.greglturnquist.payroll;
 
 import org.junit.jupiter.api.Test;
+import org.thymeleaf.exceptions.TemplateOutputException;
 
 import static org.junit.jupiter.api.Assertions.*;
 class EmployeeTest {
@@ -385,11 +386,13 @@ class EmployeeTest {
     }
 
     @Test
-    void shouldGetEmployeeJobYears(){
+    void shouldSetAndGetUpdatedJobYears(){
         // arrange
         Employee employee = new Employee("Antonio", "Silva", "Student", 1);
-        // act & assert
-        assertEquals(1, employee.getJobYears());
+        // act
+        employee.setJobYears(2);
+        // assert
+        assertEquals(2, employee.getJobYears());
     }
 
 }
