@@ -331,7 +331,7 @@ class EmployeeTest {
     }
 
     @Test
-    void shouldGenerateDifferentHashCodeWhenEmployeesHaveDifferentFirstName(){
+    void shouldGenerateDifferentHashCodeWhenFirstNameDiffer(){
         // arrange
         Employee employee1 = new Employee("Antonio", "Silva", "Student");
         Employee employee2 = new Employee("John", "Silva", "Student");
@@ -346,6 +346,15 @@ class EmployeeTest {
         Employee employee2 = new Employee("Antonio", "Silva", "Student");
         employee1.setId(1L);
         employee2.setId(2L);
+        // act & assert
+        assertNotEquals(employee1.hashCode(), employee2.hashCode());
+    }
+
+    @Test
+    void shouldGenerateDifferentHashCodesWhenLastNameDiffer() {
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student");
+        Employee employee2 = new Employee("Antonio", "Gouveia", "Student");
         // act & assert
         assertNotEquals(employee1.hashCode(), employee2.hashCode());
     }
