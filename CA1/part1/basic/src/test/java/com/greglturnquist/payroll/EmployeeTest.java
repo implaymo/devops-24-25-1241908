@@ -321,4 +321,13 @@ class EmployeeTest {
         assertFalse(result);
     }
 
+    @Test
+    void shouldReturnSameHashCodeWhenEmployeeIsTheSame(){
+        // arrange
+        // act
+        Employee employee1 = new Employee("Antonio", "Silva", "Student");
+        Employee employee2 = new Employee("Antonio", "Silva", "Student");
+        // assert
+        assertEquals(employee1.hashCode(), employee2.hashCode());
+    }
 }
