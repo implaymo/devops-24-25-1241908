@@ -102,6 +102,9 @@ public class Employee {
 	}
 
 	public void setDescription(String description) {
+		if (!isDescriptionValid(description)) {
+			throw new IllegalArgumentException("Description can't be null or empty.");
+		}
 		this.description = description;
 	}
 
