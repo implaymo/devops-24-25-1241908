@@ -32,7 +32,7 @@ class EmployeeTest {
         // arrange
         // act
         // assert
-        assertThrows(IllegalArgumentException.class, () -> new Employee(null, "Silva", "Student"));
+        assertThrows(IllegalArgumentException.class, () -> new Employee(null, "Silva", "Student", 1));
     }
 
     @Test
