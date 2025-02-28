@@ -223,7 +223,7 @@ class EmployeeTest {
     }
 
     @Test
-    void shouldThrowIllegalArgumentExceptionWhenSettingWhitespaceOnlyDescription() {
+    void shouldThrowIllegalArgumentExceptionWhenSettingEmptyWithWhitespaceDescription() {
         // arrange
         Employee employee = new Employee("Antonio", "Silva", "Student");
         // act & assert
