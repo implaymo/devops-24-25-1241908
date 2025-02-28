@@ -235,8 +235,8 @@ class EmployeeTest {
     @Test
     void shouldReturnTrueIfEmployeesFieldsHasTheSameFields() {
         // arrange
-        Employee employee1 = new Employee("Antonio", "Silva", "Student");
-        Employee employee2 = new Employee("Antonio", "Silva", "Student");
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1);
+        Employee employee2 = new Employee("Antonio", "Silva", "Student", 1);
         employee1.setId(1L);
         employee2.setId(1L);
         // act
@@ -248,7 +248,7 @@ class EmployeeTest {
     @Test
     void shouldReturnWhenComparingTheSameEmployee(){
         // arrange
-        Employee employee1 = new Employee("Antonio", "Silva", "Student");
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1);
         // act
         boolean result = employee1.equals(employee1);
         // assert
@@ -258,8 +258,8 @@ class EmployeeTest {
     @Test
     void shouldReturnFalseWhenComparingEmployeesWithDifferentIds(){
         // arrange
-        Employee employee1 = new Employee("Antonio", "Silva", "Student");
-        Employee employee2 = new Employee("Antonio", "Silva", "Student");
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1);
+        Employee employee2 = new Employee("Antonio", "Silva", "Student", 1);
         employee1.setId(1L);
         employee2.setId(2L);
         // act
@@ -271,8 +271,8 @@ class EmployeeTest {
     @Test
     void shouldReturnFalseWhenComparingEmployeesWithDifferentFirstName(){
         // arrange
-        Employee employee1 = new Employee("Antonio", "Silva", "Student");
-        Employee employee2 = new Employee("John", "Silva", "Student");
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1);
+        Employee employee2 = new Employee("John", "Silva", "Student", 1);
         // act
         boolean result = employee1.equals(employee2);
         // assert
@@ -282,8 +282,8 @@ class EmployeeTest {
     @Test
     void shouldReturnFalseWhenComparingEmployeesWithDifferentLastName(){
         // arrange
-        Employee employee1 = new Employee("Antonio", "Silva", "Student");
-        Employee employee2 = new Employee("Antonio", "Gouveia", "Student");
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1);
+        Employee employee2 = new Employee("Antonio", "Gouveia", "Student", 1);
         // act
         boolean result = employee1.equals(employee2);
         // assert
@@ -293,8 +293,8 @@ class EmployeeTest {
     @Test
     void shouldReturnFalseWhenComparingEmployeesWithDifferentDescription(){
         // arrange
-        Employee employee1 = new Employee("Antonio", "Silva", "Student");
-        Employee employee2 = new Employee("Antonio", "Silva", "Director");
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1);
+        Employee employee2 = new Employee("Antonio", "Silva", "Director", 1);
         // act
         boolean result = employee1.equals(employee2);
         // assert
@@ -304,7 +304,7 @@ class EmployeeTest {
     @Test
     void shouldReturnFalseWhenComparingEmployeeWithNullValue(){
         // arrange
-        Employee employee1 = new Employee("Antonio", "Silva", "Student");
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1);
         // act
         boolean result = employee1.equals(null);
         // assert
@@ -314,7 +314,7 @@ class EmployeeTest {
     @Test
     void shouldReturnFalseWhenComparingEmployeeWithDifferentClass() {
         // arrange
-        Employee employee = new Employee("Antonio", "Silva", "Student");
+        Employee employee = new Employee("Antonio", "Silva", "Student", 1);
         String notAnEmployee = "This is a string, not an Employee";
         // act
         boolean result = employee.equals(notAnEmployee);
@@ -325,8 +325,8 @@ class EmployeeTest {
     @Test
     void shouldGenerateSameHashCodeWhenEmployeeIsTheSame(){
         // arrange
-        Employee employee1 = new Employee("Antonio", "Silva", "Student");
-        Employee employee2 = new Employee("Antonio", "Silva", "Student");
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1);
+        Employee employee2 = new Employee("Antonio", "Silva", "Student", 1);
         // act & assert
         assertEquals(employee1.hashCode(), employee2.hashCode());
     }
@@ -334,8 +334,8 @@ class EmployeeTest {
     @Test
     void shouldGenerateDifferentHashCodeWhenFirstNameDiffer(){
         // arrange
-        Employee employee1 = new Employee("Antonio", "Silva", "Student");
-        Employee employee2 = new Employee("John", "Silva", "Student");
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1);
+        Employee employee2 = new Employee("John", "Silva", "Student", 1);
         // act & assert
         assertNotEquals(employee1.hashCode(), employee2.hashCode());
     }
@@ -343,8 +343,8 @@ class EmployeeTest {
     @Test
     void shouldGenerateDifferentHashCodesWhenIDsDiffer() {
         // arrange
-        Employee employee1 = new Employee("Antonio", "Silva", "Student");
-        Employee employee2 = new Employee("Antonio", "Silva", "Student");
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1);
+        Employee employee2 = new Employee("Antonio", "Silva", "Student", 1);
         employee1.setId(1L);
         employee2.setId(2L);
         // act & assert
@@ -354,8 +354,8 @@ class EmployeeTest {
     @Test
     void shouldGenerateDifferentHashCodesWhenLastNameDiffer() {
         // arrange
-        Employee employee1 = new Employee("Antonio", "Silva", "Student");
-        Employee employee2 = new Employee("Antonio", "Gouveia", "Student");
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1);
+        Employee employee2 = new Employee("Antonio", "Gouveia", "Student", 1);
         // act & assert
         assertNotEquals(employee1.hashCode(), employee2.hashCode());
     }
@@ -363,8 +363,8 @@ class EmployeeTest {
     @Test
     void shouldGenerateDifferentHashCodesWhenDescriptionDiffer() {
         // arrange
-        Employee employee1 = new Employee("Antonio", "Silva", "Student");
-        Employee employee2 = new Employee("Antonio", "Silva", "Director");
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1);
+        Employee employee2 = new Employee("Antonio", "Silva", "Director", 1);
         // act & assert
         assertNotEquals(employee1.hashCode(), employee2.hashCode());
     }
