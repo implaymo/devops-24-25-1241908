@@ -288,4 +288,16 @@ class EmployeeTest {
         // assert
         assertFalse(result);
     }
+
+    @Test
+    void shouldReturnFalseWhenComparingEmployeesWithDifferentDescription(){
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student");
+        Employee employee2 = new Employee("Antonio", "Silva", "Director");
+        // act
+        boolean result = employee1.equals(employee2);
+        // assert
+        assertFalse(result);
+    }
+
 }
