@@ -33,10 +33,11 @@ public class Employee {
 	private String lastName;
 	private String description;
 	private int jobYears;
+	private String email;
 
 	public Employee() {}
 
-	public Employee(String firstName, String lastName, String description, int jobYears) {
+	public Employee(String firstName, String lastName, String description, int jobYears, String email) {
 		if(!isFirstNameValid(firstName)) {
 			throw new IllegalArgumentException("First name can't be null or empty.");
 		}
@@ -53,6 +54,7 @@ public class Employee {
 		this.lastName = lastName;
 		this.description = description;
 		this.jobYears = jobYears;
+		this.email = email;
 	}
 
 	@Override
