@@ -171,7 +171,11 @@ public class Employee {
 	}
 
 	private boolean isEmailValid(String email) {
-		return email != null && !email.trim().isEmpty();
+		if (email == null || email.trim().isEmpty()) {
+			return false;
+		}
+		String emailRegex = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+		return email.matches(emailRegex);
 	}
 
 

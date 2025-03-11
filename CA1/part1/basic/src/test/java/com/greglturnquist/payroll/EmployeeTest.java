@@ -303,6 +303,26 @@ class EmployeeTest {
     }
 
     @Test
+    void shouldReturnFalseWhenComparingEmployeesWithDifferentJobYears(){
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1, "first.last@domain.com");
+        Employee employee2 = new Employee("Antonio", "Silva", "Student", 2, "first.last@domain.com");
+        // act & assert
+        assertFalse(employee1.equals(employee2));
+    }
+
+    @Test
+    void shouldReturnFalseWhenComparingEmployeesWithDifferentEmail(){
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1, "example@gmail.com");
+        Employee employee2 = new Employee("Antonio", "Silva", "Director", 2, "test@gmail.com");
+        // act
+        boolean result = employee1.equals(employee2);
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
     void shouldReturnFalseWhenComparingEmployeeWithNullValue(){
         // arrange
         Employee employee1 = new Employee("Antonio", "Silva", "Student", 1, "example@gmail.com");
@@ -434,6 +454,13 @@ class EmployeeTest {
     }
 
     @Test
+    void shouldThrowIllegalArgumentExceptionIfEmail(){
+        // arrange
+        // act & assert
+        assertThrows(IllegalArgumentException.class, () -> new Employee("Antonio", "Silva", "Student", 1, " "));
+    }
+
+    @Test
     void shouldReturnEmailFromEmployee() {
         // arrange
         Employee employee1 = new Employee("Antonio", "Silva", "Student", 1, "example@gmail.com");
@@ -477,4 +504,79 @@ class EmployeeTest {
         assertThrows(IllegalArgumentException.class, () -> employee1.setEmail(" "));
     }
 
+    @Test
+    void shouldThrowIllegalArgumentWhenEmailWithoutAtSign() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Employee("Antonio", "Silva", "Student", 1, "example.com"));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentWhenEmailWithAtSignInBeginning() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Employee("Antonio", "Silva", "Student", 1, "@example.com"));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentWhenEmailWithAtSignAtEnd() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Employee("Antonio", "Silva", "Student", 1, "example.com@"));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenSettingEmailWithoutAtSign(){
+        // arrange
+        Employee employee = new Employee("Antonio", "Silva", "Student", 1, "example@gmail.com");
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> employee.setEmail("example.com"));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenSettingEmailWithAtSignInBeginning(){
+        // arrange
+        Employee employee = new Employee("Antonio", "Silva", "Student", 1, "example@gmail.com");
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> employee.setEmail("@example.com"));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenSettingEmailWithAtSignAtEnd(){
+        // arrange
+        Employee employee = new Employee("Antonio", "Silva", "Student", 1, "example@gmail.com");
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> employee.setEmail("example.com@"));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentWhenEmailHasNoTLD() {
+        // arrange
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> new Employee("Antonio", "Silva", "Student", 1, "example@domain"));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentWhenEmailHasInvalidCharacters() {
+        // arrange
+        // act & assert
+        assertThrows(IllegalArgumentException.class,
+                () -> new Employee("Antonio", "Silva", "Student", 1, "example#@domain.com"));
+    }
+
+    @Test
+    void shouldAcceptValidEmailWithSubdomain() {
+        // arrange
+        // act
+        Employee employee = new Employee("Antonio", "Silva", "artilheiro", 1, "example@sub.domain.com");
+        // assert
+        assertEquals("example@sub.domain.com", employee.getEmail());
+    }
+
+    @Test
+    void shouldAcceptValidEmailWithDotInLocalPart() {
+        Employee employee = new Employee("Antonio", "Silva", "Student", 1, "first.last@domain.com");
+        assertEquals("first.last@domain.com", employee.getEmail());
+    }
 }
