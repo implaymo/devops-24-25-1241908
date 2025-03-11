@@ -11,13 +11,13 @@ By following these steps, you will learn how to manage a repository effectively,
 ---
 
 ## Part 1: First Week (No Branches)
-### Step 1: Copy the Application
+### Copy the Application
 To begin, copy the [Tutorial React.js and Spring Data REST application](https://github.com/spring-attic/tut-react-and-spring-data-rest/tree/master/basic) pom.xml file and basic folder into a new folder named CA1/part1. Use the following command:
 ```sh
 cp -r path/to/tutorial-app CA1/part1
 ```
 
-### Step 2: Initialize Git and Push the Code
+### Initialize Git and Push the Code
 Navigate to your project directory, initialize Git, and push the initial version to the `main` branch:
 ```sh
 git init
@@ -26,16 +26,20 @@ git commit -m "Initial commit of tutorial application"
 git push origin main
 ```
 
-### Step 3: Tag the Initial Version
+### Tag the Initial Version
 To mark the initial version of your application, create and push a Git tag:
 ```sh
 git tag v1.1.0
 git push origin v1.1.0
 ```
 
-### Step 4: Add a New Feature (jobYears Field)
+### Add a New Feature (jobYears Field)
 
-#### 1: Modify the Employee Entity to Include a New Field, `jobYears`
+#### Step 1: Modify the Employee Entity to Include a New Field, `jobYears`
+
+##### - Employee.java:
+The Java class, which models an employee, has been updated to include a new integer field called jobYears. This update involved adding the field along with its corresponding getter and setter methods to enable data encapsulation, access control, and parameter validation. Below are the key changes made to the Employee class to implement this new functionality and ensure comprehensive data validation.
+
 1. Open the `Employee.java` file located in `CA1/part1/basic/src/main/java/com/greglturnquist/payroll/`.
 2. Add a new field `jobYears` of type `int` to the `Employee` class.
 3. Update the constructor to include the new field.
@@ -89,9 +93,19 @@ private boolean isJobYearsValid(int jobYears) {
 ```
 
 #### Step 2: Implement Unit Tests to Validate the New Field
+#### - EmployeeTest.java:
+- The EmployeeTest class contains unit tests for the Employee class to ensure its methods and validation logic work correctly, with a focus on the jobYears field. Here is a summary of the tests included:
+    - Constructor and Field Tests: These tests check that the Employee object is correctly created with valid fields and that invalid fields (e.g., null or empty names) throw IllegalArgumentException.
+    - Job Years Validation Tests: These tests ensure that the jobYears field is validated correctly, ensuring non-negative values. They include:
+        - Tests to verify that valid jobYears values are accepted.
+        - Tests to ensure that negative jobYears values throw IllegalArgumentException.
+
+  The tests ensure the robustness of the Employee class by validating its behavior under various conditions.
+
 1. Open or create the test file for the Employee class, typically located in src/test/java/com/greglturnquist/payroll/.
 2. Write unit tests to validate the jobYears field.
-- #### Example of the tests implemented:
+
+- **Example of tests:**
 ```sh
 class EmployeeTest {
 @Test
@@ -134,16 +148,28 @@ class EmployeeTest {
 }
 ```
 #### Step 3: Update the DatabaseLoader
+
+#### - DatabaseLoader.java:
+- The DatabaseLoader class is a Spring component that implements the CommandLineRunner interface. It is used to initialize the database with predefined data when the application starts. Specifically, it saves an Employee object to the EmployeeRepository during the application startup. This class ensures that the database has initial data for testing or demonstration purposes.
+
 1. Open the DatabaseLoader.java file located in CA1/part1/basic/src/main/java/com/greglturnquist/payroll/.
 2. Update the run method to include the jobYears field when creating a new Employee.
+
 ```sh
 @Override
 public void run(String... strings) throws Exception {
     this.repository.save(new Employee("Frodo", "Baggins", "ring bearer", 1));
 }
 ```
-#### Step 4: Update React Components
-##### Update the EmployeeList and Employee Components in app.js
+#### Step 4: Update React Components(Update the EmployeeList and Employee Components in app.js)
+
+#### - App.js: 
+- The app.js file is a React application that fetches and displays a list of employees from a REST API. It consists of three main components:  
+  - App: The root component that manages the state of the employee list. It fetches employee data from the API when the component mounts and stores it in the state.
+  - EmployeeList: A component that receives the list of employees as a prop and renders a table with employee details.
+  - Employee: A component that renders a single employee's details in a table row.
+  - The application uses the client module to make HTTP requests to the API.
+
 1. Open the app.js file located in CA1/part1/basic/src/main/js/.
 2. Update the EmployeeList component to include the jobYears field in the table header and rows.
 ```sh
@@ -183,8 +209,10 @@ class Employee extends React.Component {
     }
 }
 ```
+### Debug Server and Client
+After confirming the integration of the jobYears field, I started the application using mvn spring-boot:run to evaluate its real-time functionality at http://localhost:8080/. This hands-on testing was essential to ensure the feature operated smoothly and remained compatible with existing components. At the same time, I performed an in-depth code review to validate data processing on the server side and confirm the correct display of jobYears on the client side, ensuring accuracy and upholding high code quality.
 
-#### Step 5: Commit the Changes and Tag the New Version:
+### Commit the Changes and Tag the New Version:
 ```sh
 git add .
 git commit -m "Added jobYears field with validation and tests"
@@ -193,7 +221,7 @@ git tag v1.2.0
 git push origin v1.2.0
 ```
 
-### Step 6: Finalize Part 1.1
+### Finalize Part 1.1
 To mark the completion of Part 1.1, create a final tag:
 ```sh
 git tag ca1-part1.1
@@ -203,18 +231,154 @@ git push origin ca1-part1.1
 ---
 
 ## Part 1: Second Week (Using Branches)
-### Step 1: Maintain the Main Branch for Stable Versions
+
+## - First Branch(email-field)
+### Create a Feature Branch for Adding an Email Field
 Ensure that the `main` branch is used only for stable versions.
 
-### Step 2: Create a Feature Branch for Adding an Email Field
-1. **Create a new branch** on GitHub named `email-field`.
-2. **Make changes** to add an `email` field to the Employee entity and implement validation.
-3. **Push changes** to the branch:
+### Create a Feature Branch for Adding an Email Field
+**Create a new branch** on GitHub named `email-field`.
+
+### Implement Email Field Feature
+1. **Modify** the Employee Entity to Include an Email Field
+```sh
+// Add the new field
+private String email;
+
+// Update the constructor
+public Employee(String firstName, String lastName, String description, int jobYears, String email) {
+    if(!isFirstNameValid(firstName)) {
+        throw new IllegalArgumentException("First name can't be null or empty.");
+    }
+    if(!isLastNameValid(lastName)) {
+        throw new IllegalArgumentException("Last name can't be null or empty.");
+    }
+    if(!isDescriptionValid(description)) {
+        throw new IllegalArgumentException("Description can't be null or empty.");
+    }
+    if(!isJobYearsValid(jobYears)) {
+        throw new IllegalArgumentException("Job years can't be negative.");
+    }
+    if(!isEmailValid(email)) {
+        throw new IllegalArgumentException("Email can't be null or empty.");
+    }
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.description = description;
+    this.jobYears = jobYears;
+    this.email = email;
+}
+
+// Add getter and setter methods
+public String getEmail() {
+    return email;
+}
+
+public void setEmail(String email) {
+    if(!isEmailValid(email)) {
+        throw new IllegalArgumentException("Email can't be null or empty.");
+    }
+    this.email = email;
+}
+
+// Add validation method
+private boolean isEmailValid(String email) {
+    return email != null && !email.trim().isEmpty();
+}
+```
+
+2. **Implement** Unit Tests for Email Field
+```sh
+@Test
+void shouldReturnEmailField() {
+    // arrange
+    Employee employee1 = new Employee("Antonio", "Silva", "Student", 1, "example@gmail.com");
+    // act
+    String email = employee1.getEmail();
+    // assert
+    assertEquals("example@gmail.com", email);
+}
+
+@Test
+void shouldThrowIllegalArgumentExceptionWhenSettingEmailNull() {
+    // arrange
+    Employee employee1 = new Employee("Antonio", "Silva", "Student", 1, "example@gmail.com");
+    // act & assert
+    assertThrows(IllegalArgumentException.class, () -> employee1.setEmail(null));
+}
+
+@Test
+void shouldThrowIllegalArgumentExceptionWhenSettingEmailEmpty() {
+    // arrange
+    Employee employee1 = new Employee("Antonio", "Silva", "Student", 1, "example@gmail.com");
+    // act & assert
+    assertThrows(IllegalArgumentException.class, () -> employee1.setEmail(""));
+}
+
+@Test
+void shouldThrowIllegalArgumentExceptionWhenSettingEmailEmptyWithWhiteSpace() {
+    // arrange
+    Employee employee1 = new Employee("Antonio", "Silva", "Student", 1, "example@gmail.com");
+    // act & assert
+    assertThrows(IllegalArgumentException.class, () -> employee1.setEmail(" "));
+}
+```
+
+3. **Update** DatabaseLoader.java
+```sh
+@Override
+public void run(String... strings) throws Exception {
+    this.repository.save(new Employee("Frodo", "Baggins", "ring bearer", 1, "example@gmail.com"));
+}
+```
+
+4. **Update** React Components
+```sh
+class EmployeeList extends React.Component{
+    render() {
+        const employees = this.props.employees.map(employee =>
+            <Employee key={employee._links.self.href} employee={employee}/>
+        );
+        return (
+            <table>
+                <tbody>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Description</th>
+                        <th>Job Years</th>
+                        <th>Email</th>
+                    </tr>
+                    {employees}
+                </tbody>
+            </table>
+        )
+    }
+}
+
+class Employee extends React.Component{
+    render() {
+        return (
+            <tr>
+                <td>{this.props.employee.firstName}</td>
+                <td>{this.props.employee.lastName}</td>
+                <td>{this.props.employee.description}</td>
+                <td>{this.props.employee.jobYears}</td>
+                <td>{this.props.employee.email}</td>
+            </tr>
+        )
+    }
+}
+```
+### Commit the Changes and Tag the New Version:
+**Push changes** to the branch:
 ```sh
 git add .
 git commit -m "Added email field with validation and tests"
 git push origin email-field
 ```
+
+### Finalize Version 1.3.0
 4. **Open a Pull Request** on GitHub and merge the branch into `main`.
 5. **Tag the new version** after merging:
 ```sh
@@ -222,9 +386,41 @@ git tag v1.3.0
 git push origin v1.3.0
 ```
 
-### Step 3: Create a Bug Fix Branch for Email Validation
-1. **Create a new branch** on GitHub named `fix-invalid-email`.
-2. **Implement validation** to ensure that employee emails contain the `@` sign.
+## - Second Branch(fix-invalid-email)
+### **Create a new branch** on GitHub named `fix-invalid-email`.
+### **Implement validation** to ensure that employee emails contain the `@` sign.
+```sh
+private boolean isEmailValid(String email) {
+		if (email == null || email.trim().isEmpty()) {
+			return false;
+		}
+		String emailRegex = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+		return email.matches(emailRegex);
+	}
+```
+### **Implement tests** to ensure that employee emails contain the `@` sign.
+- **Example of tests:**
+```sh
+@Test
+    void shouldThrowIllegalArgumentWhenEmailWithoutAtSign() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Employee("Antonio", "Silva", "Student", 1, "example.com"));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentWhenEmailWithAtSignInBeginning() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Employee("Antonio", "Silva", "Student", 1, "@example.com"));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentWhenEmailWithAtSignAtEnd() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Employee("Antonio", "Silva", "Student", 1, "example.com@"));
+    }
+```
+
+### Commit the Changes and Tag the New Version 1.3.1:
 3. **Push changes** to the branch:
 ```sh
 git add .
@@ -238,7 +434,7 @@ git tag v1.3.1
 git push origin v1.3.1
 ```
 
-### Step 4: Finalize Part 1.2
+### Finalize Version 1.2
 To mark the completion of Part 1.2, create a final tag:
 ```sh
 git tag ca1-part1.2
@@ -247,22 +443,4 @@ git push origin ca1-part1.2
 
 ---
 
-## Analysis of Alternatives
-Different Git workflows were considered:
-- **Centralized Workflow (Used in Week 1)**: Simple but lacks structured collaboration.
-- **Feature Branch Workflow (Used in Week 2)**: Allows isolated feature development and easier debugging.
-- **Gitflow Workflow**: More complex but better suited for large projects with long-term maintenance needs.
-
-The **Feature Branch Workflow** was chosen as it balances simplicity and collaboration.
-
----
-
-## Conclusion
-By following this tutorial, you will learn best practices for version control, including:
-- Initializing repositories and committing changes.
-- Using tags for version management.
-- Creating and merging branches for features and fixes via GitHub pull requests.
-- Implementing structured workflows for collaborative development.
-
-This structured approach ensures efficient version control in a professional software development environment.
 
