@@ -1,7 +1,6 @@
 package com.greglturnquist.payroll;
 
 import org.junit.jupiter.api.Test;
-import org.thymeleaf.exceptions.TemplateOutputException;
 
 import static org.junit.jupiter.api.Assertions.*;
 class EmployeeTest {
