@@ -50,6 +50,9 @@ public class Employee {
 		if(!isJobYearsValid(jobYears)) {
 			throw new IllegalArgumentException("Job years can't be negative.");
 		}
+		if(!isEmailValid(email)) {
+			throw new IllegalArgumentException("Email can't be null or empty.");
+		}
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.description = description;
@@ -152,6 +155,10 @@ public class Employee {
 
 	private boolean isJobYearsValid(int jobYears) {
 		return jobYears >= 0;
+	}
+
+	private boolean isEmailValid(String email) {
+		return email != null && !email.trim().isEmpty();
 	}
 
 

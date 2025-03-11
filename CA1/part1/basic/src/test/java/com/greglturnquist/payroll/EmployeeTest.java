@@ -412,4 +412,25 @@ class EmployeeTest {
         assertThrows(IllegalArgumentException.class, () -> employee1.setJobYears(-1));
     }
 
+    @Test
+    void shouldThrowIllegalArgumentExceptionIfEmailNull() {
+        // arrange
+        // act & assert
+        assertThrows(IllegalArgumentException.class, () -> new Employee("Antonio", "Silva", "Student", 1, null));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionIfEmailEmpty() {
+        // arrange
+        // act & assert
+        assertThrows(IllegalArgumentException.class, () -> new Employee("Antonio", "Silva", "Student", 1, ""));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionIfEmailEmptyWithWhiteSpace() {
+        // arrange
+        // act & assert
+        assertThrows(IllegalArgumentException.class, () -> new Employee("Antonio", "Silva", "Student", 1, " "));
+    }
+
 }
