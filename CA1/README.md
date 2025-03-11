@@ -442,6 +442,34 @@ git push origin ca1-part1.2
 ```
 
 ---
+## Final Results 
+
+### Implementation
+
+After completing this project, my employee model now includes several key fields to store essential employee information. The fields "First Name," "Last Name," and "Description" were already part of the model and remain unchanged.
+
+As part of the enhancements, I added the "Job Years" field in Part 1 of CA1, allowing the system to track the length of an employee's tenure. In Part 2 of CA1, I further improved the model by introducing the "Email" field, enabling the storage of contact details.
+
+With these modifications, my employee model is now more comprehensive, making it easier to manage employee records efficiently.
+
+The final state of the application is illustrated below:
+
+
+![](images/results_devops.png)
+### Branches
+This assignment taught me the value of using branches to isolate changes for specific features or fixes. This approach helps maintain a stable main codebase while also providing a clear and well-organized record of changes.
+![](images/branch_result_devops.png)
+
+### Tags
+Using tags taught me how to highlight key milestones in the project's history. This is essential for monitoring the project's progress over time and allows for quick restoration of previous versions when needed.
+![](images/tags_result_devops.png)
+
+### Issues
+During the development process, four issues were created on GitHub to track and resolve problems. These issues were closed by including "#1," "#2," "#3," and "#4" in the commit messages, which not only recorded the problems and their solutions but also automatically closed the issues once the commits were pushed.
+Issues serve various purposes, such as tracking bugs, feature requests, or tasks. They can be assigned to team members, labeled for easy searching, and linked to commits or pull requests. Going forward, the aim is to use issues throughout the development process to manage tasks, track progress, and facilitate collaboration, particularly in team settings.
+This section highlights the evolution of the application, demonstrating the addition of new features, the use of branching for development, and marking milestones with tags. The visual representations of branches and tags showcase version control concepts while emphasizing the collaborative nature of software development. The use of issue tracking underscores the importance of maintaining an organized project history, ensuring all changes are well-documented and traceable.
+
+![](images/issues_result_devops.png)
 
 ## Alternative Solution
 
@@ -512,3 +540,11 @@ hg commit -m "Merged feature branch into main"
 ```
 
 Mercurial offers a solid alternative to Git, particularly for developers who prefer a more straightforward interface and better Windows support. While Git remains the industry standard, Mercurial provides a compelling option for teams that value simplicity without sacrificing power.
+
+## Conclusion
+
+At the conclusion of the Version Control with Git assignment, I have developed a solid understanding of version control systems and their crucial role in software development. The first part of the assignment guided me through the basics, such as making direct modifications to the master branch, committing changes, and utilizing tags. Completing this section helped me become familiar with core version control workflows, which are essential for managing code in both individual and collaborative projects.
+As I progressed to the second part, which introduced branching, I gained hands-on experience with more advanced version control techniques. This included managing separate branches for feature development or bug fixes, allowing me to isolate changes and maintain a clearer project history while streamlining the overall management process.
+In the Final Results section, I showcased the practical application of version control principles. I demonstrated how my project evolved by adding new features incrementally and managing code changes efficiently. I also used GitHub issues to track and resolve problems within my project, highlighting the usefulness of this feature for managing bug tracking and ensuring clear problem-solving documentation.
+Additionally, by exploring Mercurial as an alternative to Git, I gained a deeper understanding of version control systems. While Mercurial, like Git, is a distributed version control system, it differs by offering a more centralized approach, simplifying repository management and making it easier for teams looking for a more streamlined solution.
+In conclusion, this assignment not only enhanced my technical skills with Git and Mercurial, but also highlighted the importance of version control in fostering collaboration, ensuring code integrity, and efficiently managing the evolution of software projects. I now have a greater appreciation for how version control plays a vital role in streamlining software development processes.
