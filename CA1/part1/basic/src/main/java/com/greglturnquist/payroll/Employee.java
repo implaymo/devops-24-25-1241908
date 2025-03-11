@@ -131,6 +131,17 @@ public class Employee {
 		this.jobYears = jobYears;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		if (!isEmailValid(email)) {
+			throw new IllegalArgumentException("Email can't be null or empty.");
+		}
+		this.email = email;
+	}
+
 	@Override
 	public String toString() {
 		return "Employee{" +

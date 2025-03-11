@@ -146,7 +146,7 @@ class EmployeeTest {
         Employee employee = new Employee("Antonio", "Silva", "Student", 1, "example@gmail.com");
         employee.setId(1L);
         // act
-        String expected = "Employee{id=1, firstName='Antonio', lastName='Silva', description='Student', jobYears=1}";
+        String expected = "Employee{id=1, firstName='Antonio', lastName='Silva', description='Student', jobYears=1, email='example@gmail.com'}";
         // assert
         assertEquals(expected, employee.toString());
     }
@@ -431,6 +431,50 @@ class EmployeeTest {
         // arrange
         // act & assert
         assertThrows(IllegalArgumentException.class, () -> new Employee("Antonio", "Silva", "Student", 1, " "));
+    }
+
+    @Test
+    void shouldReturnEmailFromEmployee() {
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1, "example@gmail.com");
+        // act
+        String email = employee1.getEmail();
+        // assert
+        assertEquals("example@gmail.com", email);
+    }
+
+    @Test
+    void shouldSetAndGetUpdatedEmail(){
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1, "example@gmail.com");
+        // act
+        employee1.setEmail("test@gmail.com");
+        // assert
+        assertEquals("test@gmail.com", employee1.getEmail());
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenSettingEmailNull() {
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1, "example@gmail.com");
+        // act & assert
+        assertThrows(IllegalArgumentException.class, () -> employee1.setEmail(null));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenSettingEmailEmpty() {
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1, "example@gmail.com");
+        // act & assert
+        assertThrows(IllegalArgumentException.class, () -> employee1.setEmail(""));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenSettingEmailEmptyWithWhiteSpace() {
+        // arrange
+        Employee employee1 = new Employee("Antonio", "Silva", "Student", 1, "example@gmail.com");
+        // act & assert
+        assertThrows(IllegalArgumentException.class, () -> employee1.setEmail(" "));
     }
 
 }
