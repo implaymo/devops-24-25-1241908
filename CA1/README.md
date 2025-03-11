@@ -443,4 +443,72 @@ git push origin ca1-part1.2
 
 ---
 
+## Alternative Solution
 
+# **Comparison of Mercurial and Git**
+
+## **Feature Comparison**
+
+| **Feature**            | **Mercurial (Hg)**                                           | **Git**  |
+|------------------------|--------------------------------------------------------------|----------|
+| **Architecture**       | Distributed version control, similar to Git, where every developer has a full repository copy. | Distributed architecture, enabling multiple full-version repositories for enhanced redundancy and collaboration. |
+| **Versioning Model**   | Snapshot-based, storing the entire project state at each commit, ensuring complete tracking. | Adopts a snapshot-based approach, encapsulating the state of the entire repository at each commit for comprehensive tracking. |
+| **Branching and Merging** | Uses named branches and bookmarks; merging is simple and built-in, though less flexible than Git. | Provides efficient branching and merging capabilities, ideal for parallel development workflows. |
+| **Binary Files Handling** | Handles binary files more efficiently with fewer issues related to large files, thanks to built-in optimizations. | Stores complete binary files per change, which may increase repository size but ensures ease of access to all versions. |
+| **Performance**       | Optimized for speed with a focus on simplicity; performs well on large repositories. | Highly optimized for speed, especially in operations like branching, merging, and rebasing. |
+| **Ease of Use**       | Simpler command set and a more user-friendly interface compared to Git. | Powerful but has a steeper learning curve due to its complex command structure. |
+| **Platform Support**  | Cross-platform support with better Windows compatibility out of the box. | Cross-platform support but may require extra setup on Windows for full functionality. |
+
+---
+
+## **Utilizing Mercurial for the Assignment**
+
+Mercurial can be employed similarly to Git, offering a straightforward workflow with its own set of commands.
+
+### **1. Initial Repository Setup and Import**
+
+To begin, a Mercurial repository needs to be created and initialized to manage the **Tutorial React.js and Spring Data REST** application:
+
+```sh
+# Create a new Mercurial repository
+hg init /path/to/mercurial_repository  
+
+# Add project files and commit the initial import
+cd /path/to/TutorialReactSpringDataREST  
+hg add  
+hg commit -m "Initial import"
+```
+
+### **2. Feature Development and Branch Management**
+Mercurial supports branching using named branches or bookmarks. Bookmarks function similarly to Git branches:
+
+```sh
+# Create a new feature branch
+hg branch feature-branch  
+hg commit -m "Creating feature branch"
+```
+
+### 3. Continuous Integration: Committing and Tagging
+Changes are committed frequently, ensuring a clear history of the development process. Stable versions are tagged for easy tracking:
+```sh
+# Commit changes to the feature branch
+hg commit -m "Implemented new feature"
+
+# Tag a stable release
+hg tag v1.0  
+hg commit -m "Tagging version 1.0"
+```
+
+### 4. Merging Features and Preparing for Deployment
+Once a feature is completed and tested, it is merged back into the main branch to prepare for deployment:
+
+```sh
+# Switch to the main branch
+hg update default  
+
+# Merge the feature branch into the main branch
+hg merge feature-branch  
+hg commit -m "Merged feature branch into main"
+```
+
+Mercurial offers a solid alternative to Git, particularly for developers who prefer a more straightforward interface and better Windows support. While Git remains the industry standard, Mercurial provides a compelling option for teams that value simplicity without sacrificing power.
