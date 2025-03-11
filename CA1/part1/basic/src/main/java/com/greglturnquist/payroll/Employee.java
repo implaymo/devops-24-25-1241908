@@ -33,10 +33,11 @@ public class Employee {
 	private String lastName;
 	private String description;
 	private int jobYears;
+	private String email;
 
 	public Employee() {}
 
-	public Employee(String firstName, String lastName, String description, int jobYears) {
+	public Employee(String firstName, String lastName, String description, int jobYears, String email) {
 		if(!isFirstNameValid(firstName)) {
 			throw new IllegalArgumentException("First name can't be null or empty.");
 		}
@@ -49,10 +50,14 @@ public class Employee {
 		if(!isJobYearsValid(jobYears)) {
 			throw new IllegalArgumentException("Job years can't be negative.");
 		}
+		if(!isEmailValid(email)) {
+			throw new IllegalArgumentException("Email can't be null or empty.");
+		}
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.description = description;
 		this.jobYears = jobYears;
+		this.email = email;
 	}
 
 	@Override
@@ -64,13 +69,14 @@ public class Employee {
 			Objects.equals(firstName, employee.firstName) &&
 			Objects.equals(lastName, employee.lastName) &&
 			Objects.equals(description, employee.description) &&
-			Objects.equals(jobYears, employee.jobYears);
+			Objects.equals(jobYears, employee.jobYears) &&
+			Objects.equals(email, employee.email);
 	}
 
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(id, firstName, lastName, description, jobYears);
+		return Objects.hash(id, firstName, lastName, description, jobYears, email);
 	}
 
 	public Long getId() {
@@ -125,6 +131,17 @@ public class Employee {
 		this.jobYears = jobYears;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		if (!isEmailValid(email)) {
+			throw new IllegalArgumentException("Email can't be null or empty.");
+		}
+		this.email = email;
+	}
+
 	@Override
 	public String toString() {
 		return "Employee{" +
@@ -133,6 +150,7 @@ public class Employee {
 			", lastName='" + lastName + '\'' +
 			", description='" + description + '\'' +
 			", jobYears=" + jobYears +
+			", email='" + email + '\'' +
 			'}';
 	}
 
@@ -150,6 +168,10 @@ public class Employee {
 
 	private boolean isJobYearsValid(int jobYears) {
 		return jobYears >= 0;
+	}
+
+	private boolean isEmailValid(String email) {
+		return email != null && !email.trim().isEmpty();
 	}
 
 
