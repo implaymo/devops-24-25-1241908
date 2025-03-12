@@ -69,3 +69,21 @@ task runServer(type:JavaExec, dependsOn: classes) {
 
     args '59001'
 }
+
+task backupSrc(type: Copy) {
+    description 'Creates a backup of the src directory to the backup folder'
+
+    def timestamp = new Date().format('yyyyMMdd-HHmmss')
+
+    from 'src'
+
+    into "backup/src-backup-${timestamp}"
+
+    doFirst {
+        println "Creating backup of src directory to backup/src-backup-${timestamp}"
+    }
+
+    doLast {
+        println "Backup completed successfully!"
+    }
+}
