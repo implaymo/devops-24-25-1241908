@@ -87,3 +87,21 @@ task backupSrc(type: Copy) {
         println "Backup completed successfully!"
     }
 }
+
+task archiveSrcIntoZip(type: Zip) {
+    description 'Creates a backup of the src directory to zip file'
+    def timestamp = new Date().format('yyyyMMdd-HHmmss')
+    archiveFileName = "src-backup-${timestamp}.zip"
+    destinationDirectory = file("archiveZip")  // This is the correct way to set the output directory
+
+    from 'src'
+
+    doFirst {
+        destinationDirectory.get().asFile.mkdirs()  // Create directory if it doesn't exist
+        println "Creating zip file of src directory to ${archiveFile.get()}"
+    }
+
+    doLast {
+        println "Zip file successfully created!"
+    }
+}
