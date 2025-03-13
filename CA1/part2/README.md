@@ -1,5 +1,34 @@
 # CA1, Part 2: Technical Report – Build Tools with Gradle
 
+---
+## Table of Contents
+- [CA1, Part 2: Technical Report – Build Tools with Gradle](#ca1-part-2-technical-report--build-tools-with-gradle)
+    - [Introduction](#introduction)
+    - [Setting Up the Project](#setting-up-the-project)
+        - [Create the Directory and Clone the Repository](#create-the-directory-and-clone-the-repository)
+        - [Verify Gradle Installation](#verify-gradle-installation)
+        - [Import the Project into an IDE](#import-the-project-into-an-ide)
+        - [Run a Basic Gradle Build](#run-a-basic-gradle-build)
+        - [Proceed with Further Development](#proceed-with-further-development)
+    - [Gradle Basic Demo](#gradle-basic-demo)
+        - [1. Building the Project](#1-building-the-project)
+        - [2. Start the Server](#2-start-the-server)
+        - [3. Connecting Clients](#3-connecting-clients)
+    - [Add a New Task to Execute the Server](#add-a-new-task-to-execute-the-server)
+        - [Step 1: Open the build.gradle File](#step-1-open-the-buildgradle-file)
+        - [Step 2: Add the runServer Task](#step-2-add-the-runserver-task)
+    - [Add a Unit Test](#add-a-unit-test)
+        - [Add JUnit Dependency to build.gradle](#add-junit-dependency-to-buildgradle)
+        - [Create a New Directory for Tests](#create-a-new-directory-for-tests)
+        - [Create the Unit Test File](#create-the-unit-test-file)
+    - [Add a New Task of Type Copy](#add-a-new-task-of-type-copy)
+        - [Define the Backup Task with a Timestamp](#define-the-backup-task-with-a-timestamp)
+        - [Test Backup Task](#test-backup-task)
+    - [Add a New Task of Type Zip](#add-a-new-task-of-type-zip)
+        - [Test the Zip Task](#test-the-zip-task)
+    - [Conclusion](#conclusion)
+
+---
 ## Introduction 
 
 This guide focuses on practicing Gradle using a simple example application. Students will set up and modify a Gradle project, add custom tasks, and integrate unit testing. Key tasks include executing the provided application, adding Gradle tasks for running a server, performing backups, and creating a zip archive. Proper version control practices, including multiple commits, tagging and using issues, are required.

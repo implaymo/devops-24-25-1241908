@@ -1,5 +1,41 @@
-
 # CA1, Part 1: Technical Report - Version Control with Git
+
+---
+## Table of Contents
+- [Introduction](#introduction)
+- [Part 1: First Week (No Branches)](#part-1-first-week-no-branches)
+    - [Copy the Application](#copy-the-application)
+    - [Initialize Git and Push the Code](#initialize-git-and-push-the-code)
+    - [Tag the Initial Version](#tag-the-initial-version)
+    - [Add a New Feature (jobYears Field)](#add-a-new-feature-jobyears-field)
+        - [Step 1: Modify the Employee Entity to Include a New Field, `jobYears`](#step-1-modify-the-employee-entity-to-include-a-new-field-jobyears)
+        - [Step 2: Implement Unit Tests to Validate the New Field](#step-2-implement-unit-tests-to-validate-the-new-field)
+        - [Step 3: Update the DatabaseLoader](#step-3-update-the-databaseloader)
+        - [Step 4: Update React Components](#step-4-update-react-components)
+    - [Debug Server and Client](#debug-server-and-client)
+    - [Commit the Changes and Tag the New Version](#commit-the-changes-and-tag-the-new-version)
+    - [Finalize Part 1.1](#finalize-part-11)
+- [Part 1: Second Week (Using Branches)](#part-1-second-week-using-branches)
+    - [First Branch (email-field)](#first-branch-email-field)
+        - [Create a Feature Branch for Adding an Email Field](#create-a-feature-branch-for-adding-an-email-field)
+        - [Implement Email Field Feature](#implement-email-field-feature)
+        - [Commit the Changes and Tag the New Version](#commit-the-changes-and-tag-the-new-version)
+        - [Finalize Version 1.3.0](#finalize-version-130)
+    - [Second Branch (fix-invalid-email)](#second-branch-fix-invalid-email)
+        - [Implement Validation for Email Format](#implement-validation-for-email-format)
+        - [Commit the Changes and Tag the New Version 1.3.1](#commit-the-changes-and-tag-the-new-version-131)
+        - [Finalize Version 1.2](#finalize-version-12)
+- [Final Results](#final-results)
+    - [Implementation](#implementation)
+    - [Branches](#branches)
+    - [Tags](#tags)
+    - [Issues](#issues)
+- [Alternative Solution](#alternative-solution)
+    - [Comparison of Mercurial and Git](#comparison-of-mercurial-and-git)
+    - [Utilizing Mercurial for the Assignment](#utilizing-mercurial-for-the-assignment)
+- [Conclusion](#conclusion)
+
+---
 
 ## Introduction
 This guide provides step-by-step instructions on using Git for version control while developing a React.js and Spring Data REST application. The assignment is divided into two stages:
