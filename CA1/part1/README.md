@@ -232,9 +232,9 @@ git push origin ca1-part1.1
 
 ## Part 1: Second Week (Using Branches)
 
-## - First Branch(email-field)
-### Create a Feature Branch for Adding an Email Field
 Ensure that the `main` branch is used only for stable versions.
+
+## First Branch(email-field)
 
 ### Create a Feature Branch for Adding an Email Field
 **Create a new branch** on GitHub named `email-field`.
@@ -385,10 +385,10 @@ git push origin email-field
 git tag v1.3.0
 git push origin v1.3.0
 ```
-
-## - Second Branch(fix-invalid-email)
+---
+## Second Branch(fix-invalid-email)
 ### **Create a new branch** on GitHub named `fix-invalid-email`.
-### **Implement validation** to ensure that employee emails contain the `@` sign.
+**Implement validation** to ensure that employee emails contain the `@` sign.
 ```sh
 private boolean isEmailValid(String email) {
 		if (email == null || email.trim().isEmpty()) {
@@ -398,7 +398,6 @@ private boolean isEmailValid(String email) {
 		return email.matches(emailRegex);
 	}
 ```
-### **Implement tests** to ensure that employee emails contain the `@` sign.
 - **Example of tests:**
 ```sh
 @Test
@@ -455,21 +454,21 @@ With these modifications, my employee model is now more comprehensive, making it
 The final state of the application is illustrated below:
 
 
-![](images/results_devops.png)
+![](basic/images/results_devops.png)
 ### Branches
 This assignment taught me the value of using branches to isolate changes for specific features or fixes. This approach helps maintain a stable main codebase while also providing a clear and well-organized record of changes.
-![](images/branch_result_devops.png)
+![](basic/images/branch_result_devops.png)
 
 ### Tags
 Using tags taught me how to highlight key milestones in the project's history. This is essential for monitoring the project's progress over time and allows for quick restoration of previous versions when needed.
-![](images/tags_result_devops.png)
+![](basic/images/tags_result_devops.png)
 
 ### Issues
 During the development process, four issues were created on GitHub to track and resolve problems. These issues were tracked by including "#1," "#2," "#3," and "#4" in the commit messages.
 Issues serve various purposes, such as tracking bugs, feature requests, or tasks. They can be assigned to team members, labeled for easy searching, and linked to commits or pull requests. Going forward, the aim is to use issues throughout the development process to manage tasks, track progress, and facilitate collaboration, particularly in team settings.
 This section highlights the evolution of the application, demonstrating the addition of new features, the use of branching for development, and marking milestones with tags. The visual representations of branches and tags showcase version control concepts while emphasizing the collaborative nature of software development. The use of issue tracking underscores the importance of maintaining an organized project history, ensuring all changes are well-documented and traceable.
 
-![](images/issues_result_devops.png)
+![](basic/images/issues_result_devops.png)
 
 ## Alternative Solution
 
