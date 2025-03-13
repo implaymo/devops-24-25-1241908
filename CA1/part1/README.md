@@ -142,7 +142,7 @@ private boolean isJobYearsValid(int jobYears) {
 2. Write unit tests to validate the jobYears field.
 
 - **Example of tests:**
-```sh
+```java
 class EmployeeTest {
 @Test
     void shouldCreateEmployeeWithDefaultConstructor() {
@@ -191,7 +191,7 @@ class EmployeeTest {
 1. Open the DatabaseLoader.java file located in CA1/part1/basic/src/main/java/com/greglturnquist/payroll/.
 2. Update the run method to include the jobYears field when creating a new Employee.
 
-```sh
+```java
 @Override
 public void run(String... strings) throws Exception {
     this.repository.save(new Employee("Frodo", "Baggins", "ring bearer", 1));
@@ -208,7 +208,7 @@ public void run(String... strings) throws Exception {
 
 1. Open the app.js file located in CA1/part1/basic/src/main/js/.
 2. Update the EmployeeList component to include the jobYears field in the table header and rows.
-```sh
+```js
 class EmployeeList extends React.Component {
     render() {
         const employees = this.props.employees.map(employee =>
@@ -231,7 +231,7 @@ class EmployeeList extends React.Component {
 }
 ```
 3. Update the Employee component to display the jobYears field.
-```sh
+```js
 class Employee extends React.Component {
     render() {
         return (
@@ -277,7 +277,7 @@ Ensure that the `main` branch is used only for stable versions.
 
 ### Implement Email Field Feature
 1. **Modify** the Employee Entity to Include an Email Field
-```sh
+```java
 // Add the new field
 private String email;
 
@@ -324,7 +324,7 @@ private boolean isEmailValid(String email) {
 ```
 
 2. **Implement** Unit Tests for Email Field
-```sh
+```java
 @Test
 void shouldReturnEmailField() {
     // arrange
@@ -361,7 +361,7 @@ void shouldThrowIllegalArgumentExceptionWhenSettingEmailEmptyWithWhiteSpace() {
 ```
 
 3. **Update** DatabaseLoader.java
-```sh
+```java
 @Override
 public void run(String... strings) throws Exception {
     this.repository.save(new Employee("Frodo", "Baggins", "ring bearer", 1, "example@gmail.com"));
@@ -369,7 +369,7 @@ public void run(String... strings) throws Exception {
 ```
 
 4. **Update** React Components
-```sh
+```js
 class EmployeeList extends React.Component{
     render() {
         const employees = this.props.employees.map(employee =>
@@ -425,7 +425,7 @@ git push origin v1.3.0
 ## Second Branch(fix-invalid-email)
 ### **Create a new branch** on GitHub named `fix-invalid-email`.
 **Implement validation** to ensure that employee emails contain the `@` sign.
-```sh
+```java
 private boolean isEmailValid(String email) {
 		if (email == null || email.trim().isEmpty()) {
 			return false;
@@ -435,7 +435,7 @@ private boolean isEmailValid(String email) {
 	}
 ```
 - **Example of tests:**
-```sh
+```java
 @Test
     void shouldThrowIllegalArgumentWhenEmailWithoutAtSign() {
         assertThrows(IllegalArgumentException.class,

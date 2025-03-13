@@ -120,7 +120,7 @@ Start by opening the build.gradle file in your project. This file contains the c
 #### Step 2: Add the runServer Task
 To define the new runServer task, add the following code to the build.gradle file:
 
-```sh
+```groovy
 task runServer(type:JavaExec, dependsOn: classes) {
     group = "DevOps"
     description = "Launches the chat server on port 59001"
@@ -183,7 +183,7 @@ Inside this directory, create a new Java file called AppTest.java. This file wil
 
 **Example test:**
 
-```sh
+```java
 package basic_demo;
 
 import org.junit.Test;
@@ -221,7 +221,7 @@ In this implementation, a timestamp is added to the backup folder name to ensure
 
 Here’s how to define the backup task in build.gradle:
 
-```sh
+```groovy
 task backupSrc(type: Copy) {
     description 'Creates a backup of the src directory to the backup folder'
 
@@ -280,7 +280,7 @@ The final task is to create a new task of type Zip to package the project's sour
 
 This step is essential for archiving different iterations of the project or preparing the code for distribution. The task definition for creating the zip archive is as follows:
 
-```sh
+```groovy
 task archiveSrcIntoZip(type: Zip) {
     description 'Creates a backup of the src directory to zip file'
     def timestamp = new Date().format('yyyyMMdd-HHmmss')
