@@ -1,5 +1,5 @@
 
-# Version Control with Git
+# CA1, Part 1: Technical Report - Version Control with Git
 
 ## Introduction
 This guide provides step-by-step instructions on using Git for version control while developing a React.js and Spring Data REST application. The assignment is divided into two stages:
@@ -448,7 +448,7 @@ git push origin ca1-part1.2
 
 After completing this project, my employee model now includes several key fields to store essential employee information. The fields "First Name," "Last Name," and "Description" were already part of the model and remain unchanged.
 
-As part of the enhancements, I added the "Job Years" field in Part 1 of CA1, allowing the system to track the length of an employee's tenure. In Part 2 of CA1, I further improved the model by introducing the "Email" field, enabling the storage of contact details.
+As part of the enhancements, I added the "Job Years" field in first week of CA1, allowing the system to track the length of an employee's tenure. In second week of CA1, I further improved the model by introducing the "Email" field, enabling the storage of contact details.
 
 With these modifications, my employee model is now more comprehensive, making it easier to manage employee records efficiently.
 
@@ -465,7 +465,7 @@ Using tags taught me how to highlight key milestones in the project's history. T
 ![](images/tags_result_devops.png)
 
 ### Issues
-During the development process, four issues were created on GitHub to track and resolve problems. These issues were closed by including "#1," "#2," "#3," and "#4" in the commit messages, which not only recorded the problems and their solutions but also automatically closed the issues once the commits were pushed.
+During the development process, four issues were created on GitHub to track and resolve problems. These issues were tracked by including "#1," "#2," "#3," and "#4" in the commit messages.
 Issues serve various purposes, such as tracking bugs, feature requests, or tasks. They can be assigned to team members, labeled for easy searching, and linked to commits or pull requests. Going forward, the aim is to use issues throughout the development process to manage tasks, track progress, and facilitate collaboration, particularly in team settings.
 This section highlights the evolution of the application, demonstrating the addition of new features, the use of branching for development, and marking milestones with tags. The visual representations of branches and tags showcase version control concepts while emphasizing the collaborative nature of software development. The use of issue tracking underscores the importance of maintaining an organized project history, ensuring all changes are well-documented and traceable.
 
