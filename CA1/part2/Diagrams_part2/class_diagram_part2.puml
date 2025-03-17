@@ -1,0 +1,29 @@
+@startuml Chat Application
+
+class App {
+  +getGreeting(): String
+  +main(String[] args): void
+}
+
+class ChatClient implements Runnable {
+  +ChatClient(String serverAddress, int serverPort)
+  +run(): void
+}
+
+class ChatClientApp {
+  +main(String[] args): void
+}
+
+class ChatServer implements Runnable {
+  +ChatServer(int serverPort)
+  +run(): void
+}
+
+class ChatServerApp {
+  +main(String[] args): void
+}
+
+ChatClientApp ..> ChatClient : creates
+ChatServerApp ..> ChatServer : creates
+
+@enduml
