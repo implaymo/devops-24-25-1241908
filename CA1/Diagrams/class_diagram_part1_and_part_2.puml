@@ -1,0 +1,53 @@
+@startuml Employee Management System
+
+class Employee {
+  -Long id
+  -String firstName
+  -String lastName
+  -String description
+  -int jobYears
+  -String email
+  +Employee()
+  +Employee(String firstName, String lastName, String description, int jobYears, String email)
+  +getId(): Long
+  +setId(Long id): void
+  +getFirstName(): String
+  +setFirstName(String firstName): void
+  +getLastName(): String
+  +setLastName(String lastName): void
+  +getDescription(): String
+  +setDescription(String description): void
+  +getJobYears(): int
+  +setJobYears(int jobYears): void
+  +getEmail(): String
+  +setEmail(String email): void
+  +equals(Object o): boolean
+  +hashCode(): int
+  +toString(): String
+}
+
+interface EmployeeRepository {
+  +findAll(): Iterable<Employee>
+  +findById(Long id): Optional<Employee>
+  +save(Employee employee): Employee
+  +deleteById(Long id): void
+}
+
+class DatabaseLoader {
+  -EmployeeRepository repository
+  +DatabaseLoader(EmployeeRepository repository)
+  +run(String... strings): void
+}
+
+class HomeController {
+  +index(): String
+}
+
+class ReactAndSpringDataRestApplication {
+  +main(String[] args): void
+}
+
+DatabaseLoader --> EmployeeRepository : uses
+EmployeeRepository --> Employee : manages
+
+@enduml

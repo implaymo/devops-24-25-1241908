@@ -1,0 +1,28 @@
+@startuml Employee Save Process
+
+participant "DatabaseLoader" as Loader
+participant "Employee" as Employee
+participant "EmployeeRepository" as Repository
+database "Database" as DB
+
+Loader -> Employee : new Employee(firstName, lastName, description, jobYears, email)
+activate Employee #application
+
+Employee -> Employee: isFirstNameValid(firstName)
+Employee -> Employee: isLastNameValid(lastName)
+Employee -> Employee: isDescriptionValid(description)
+Employee -> Employee: isJobYearsValid(jobYears)
+Employee -> Employee: isEmailValid(email)
+
+Employee --> Loader : return new Employee instance
+deactivate Employee
+
+Loader -> Repository: save(employee)
+activate Repository #application
+
+Repository -> DB: persist employee data
+DB --> Repository: confirm persistence
+Repository --> Loader: return saved Employee
+deactivate Repository
+
+@enduml
