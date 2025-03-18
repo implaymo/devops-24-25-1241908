@@ -15,11 +15,12 @@
  */
 package com.greglturnquist.payroll;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+
 import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 /**
  * @author Greg Turnquist
@@ -28,7 +29,8 @@ import javax.persistence.Id;
 @Entity // <1>
 public class Employee {
 
-	private @Id @GeneratedValue Long id; // <2>
+	private @Id
+	@GeneratedValue Long id; // <2>
 	private String firstName;
 	private String lastName;
 	private String description;
