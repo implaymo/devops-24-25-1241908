@@ -617,10 +617,67 @@ By following these steps, Mercurial can push changes to GitHub while using its o
 
 This should be your result:
 
-![](part1_mercurial/basic/images/result_mercurial_vc.png)
-
+![](images/result_mercurial_vc.png)
 
 By following these steps, Mercurial can push changes to GitHub while using its own version control system.
+
+## **Managing Branches in Mercurial**
+
+### 1. **Create a New Branch**
+
+To start working on a new feature, first create a new branch. For this example, we’ll create a branch called `feat-job-years`.
+
+```bash
+hg branch feat-job-years
+```
+
+This command creates a new branch named feat-job-years and marks your working directory with this new branch. You can now safely make changes without affecting the main branch.
+
+### 2. Confirm Branch Creation
+You can verify that the branch has been created using the following command:
+
+```sh
+hg branches
+```
+
+This should be your result: 
+
+![](images/branch_mercurial_result.png)
+
+### 3. Make Changes on the Branch
+
+Edit Employee.java with a new field called jobYears.
+
+### 4. Add and Commit the Changes
+
+```sh
+hg add
+hg commit -m "Added jobYears feature"
+```
+
+### 5. Switch to default Branch
+
+```sh
+hg update default
+```
+
+### 6. Merge the Feature Branch
+
+```sh
+hg merge feat-job-years
+```
+
+### 7. Commit the Merge
+
+```sh
+hg commit -m "Merged feat-job-years into default"
+```
+
+### 8. Push Your Changes
+
+```sh
+hg push
+```
 
 Mercurial offers a solid alternative to Git, particularly for developers who prefer a more straightforward interface and better Windows support. While Git remains the industry standard, Mercurial provides a compelling option for teams that value simplicity without sacrificing power.
 
