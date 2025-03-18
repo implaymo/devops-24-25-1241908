@@ -1,0 +1,28 @@
+# .hgignore
+
+# Use glob syntax for pattern matching
+syntax: glob
+
+# Ignore IntelliJ IDEA project files
+.idea/
+
+# Ignore Java compiled class files
+*.class
+
+# Ignore log files
+*.log
+
+# Ignore Maven target directory
+target/
+
+# Ignore Gradle build directories
+**/build/
+
+# Ignore Node.js modules
+node_modules/
+
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+
+../.git/
