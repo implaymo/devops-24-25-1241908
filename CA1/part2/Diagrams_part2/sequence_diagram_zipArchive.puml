@@ -13,6 +13,7 @@ D -> G ++: invoke archiveSources task
 G -> ZT ++: ./gradlew archiveSrcIntoZip
 ZT -> ZT: locate 'src' folder
 ZT -> ZT: compress 'src' into zip file
+ZT -> ZT: copy contents to archiveZip folder
 ZT --> G --: archive completed
 G --> D --: archive task finished
 @enduml
