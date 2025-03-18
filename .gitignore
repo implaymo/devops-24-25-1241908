@@ -471,6 +471,7 @@ yarn-error.log
 application-local.properties
 application-dev.properties
 
+../.hg/
 
 ### Gradle ###
 
