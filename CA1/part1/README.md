@@ -506,11 +506,9 @@ This section highlights the evolution of the application, demonstrating the addi
 
 ![](basic/images/issues_result_devops.png)
 
-## Alternative Solution
+# Alternative Solution Test
 
-# **Comparison of Mercurial and Git**
-
-## **Feature Comparison**
+### **Comparison of Mercurial and Git**
 
 | **Feature**            | **Mercurial (Hg)**                                           | **Git**  |
 |------------------------|--------------------------------------------------------------|----------|
@@ -524,55 +522,105 @@ This section highlights the evolution of the application, demonstrating the addi
 
 ---
 
+
 ## **Utilizing Mercurial for the Assignment**
 
 Mercurial can be employed similarly to Git, offering a straightforward workflow with its own set of commands.
+This guide explains how to configure Mercurial (Hg) to push changes to GitHub using a Personal Access Token (PAT).
 
-### **1. Initial Repository Setup and Import**
+### Prerequisites
 
-To begin, a Mercurial repository needs to be created and initialized to manage the **Tutorial React.js and Spring Data REST** application:
+- **TortoiseHg Installed**: Download from [TortoiseHg website](https://tortoisehg.bitbucket.io/). Installing TortoiseHg also installs Mercurial.
+- **Python Installed**: Required to install pip and Mercurial extensions. Download from [Python website](https://www.python.org/downloads/).
+- **Pip Installed**: If not already installed, install it by running:
+  ```sh
+  python -m ensurepip --default-pip
+  ```
+- **Hg-Git Extension Installed**: The extension should be included with TortoiseHg, but can be manually installed if needed:
+  ```sh
+  pip install hg-git
+  ```
 
-```sh
-# Create a new Mercurial repository
-hg init /path/to/mercurial_repository  
+### Step 1: Set Up the Project Folder
 
-# Add project files and commit the initial import
-cd /path/to/TutorialReactSpringDataREST  
-hg add  
-hg commit -m "Initial import"
-```
-
-### **2. Feature Development and Branch Management**
-Mercurial supports branching using named branches or bookmarks. Bookmarks function similarly to Git branches:
-
-```sh
-# Create a new feature branch
-hg branch feature-branch  
-hg commit -m "Creating feature branch"
-```
-
-### 3. Continuous Integration: Committing and Tagging
-Changes are committed frequently, ensuring a clear history of the development process. Stable versions are tagged for easy tracking:
-```sh
-# Commit changes to the feature branch
-hg commit -m "Implemented new feature"
-
-# Tag a stable release
-hg tag v1.0  
-hg commit -m "Tagging version 1.0"
-```
-
-### 4. Merging Features and Preparing for Deployment
-Once a feature is completed and tested, it is merged back into the main branch to prepare for deployment:
+To begin, copy the [Tutorial React.js and Spring Data REST application](https://github.com/spring-attic/tut-react-and-spring-data-rest/tree/master/basic) `basic` folder into a new folder named `CA1/part1/part1_mercurial`. Use the following command:
 
 ```sh
-# Switch to the main branch
-hg update default  
-
-# Merge the feature branch into the main branch
-hg merge feature-branch  
-hg commit -m "Merged feature branch into main"
+mkdir -p CA1/part1/part1_mercurial
+cp -r path/to/tutorial/basic CA1/part1/part1_mercurial
 ```
+
+### Step 2: Create a GitHub Repository
+
+1. Log in to GitHub.
+2. Click **"New repository"** and enter a name.
+3. Click **"Create repository"**.
+
+### Step 3: Generate a GitHub Personal Access Token (PAT)
+
+1. Go to **GitHub Settings > Developer settings > Personal access tokens**.
+2. Click **"Generate new token"**, select `repo` scope, and copy the token.
+
+### Step 4: Configure Mercurial with GitHub
+
+Edit `~/.hgrc` if using macOS or Linux. If using Windows edit `C:\Users\<username>\Mercurial.ini` and add:
+
+```ini
+[auth]
+github.prefix = https://github.com/<username>/<repository>
+github.username = <username>
+github.password = <PAT>
+```
+
+Enable the Hg-Git extension by adding the following to `.hg/hgrc`:
+
+```ini
+[extensions]
+hggit =
+```
+
+### Step 5: Initialize and Prepare the Repository
+
+1. Navigate to the project folder:
+   ```sh
+   cd CA1/part1/part1_mercurial/basic
+   ```
+2. Initialize Mercurial:
+   ```sh
+   hg init
+   ```
+3. Add all files:
+   ```sh
+   hg add
+   ```
+4. Commit the changes:
+   ```sh
+   hg commit -m "Initial commit"
+   ```
+5. Create a bookmark to align with Git branches:
+   ```sh
+   hg bookmark -r default master
+   ```
+   
+1. Push changes:
+   ```sh
+   hg push
+   ```
+.
+
+### Step 7: Verify on GitHub
+
+1. Open the GitHub repository page.
+2. Confirm that commits appear in the repository.
+
+By following these steps, Mercurial can push changes to GitHub while using its own version control system.
+
+This should be your result:
+
+![](part1_mercurial/basic/images/result_mercurial_vc.png)
+
+
+By following these steps, Mercurial can push changes to GitHub while using its own version control system.
 
 Mercurial offers a solid alternative to Git, particularly for developers who prefer a more straightforward interface and better Windows support. While Git remains the industry standard, Mercurial provides a compelling option for teams that value simplicity without sacrificing power.
 
