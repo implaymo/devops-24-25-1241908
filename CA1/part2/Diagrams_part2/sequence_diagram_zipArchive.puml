@@ -1,0 +1,18 @@
+@startuml Archive_Task_Sequence
+skinparam sequence {
+  LifeLineBackgroundColor #application
+}
+
+actor Developer as D
+participant "Gradle" as G
+participant "ZipTask" as ZT
+
+
+
+D -> G ++: invoke archiveSources task
+G -> ZT ++: ./gradlew archiveSrcIntoZip
+ZT -> ZT: locate 'src' folder
+ZT -> ZT: compress 'src' into zip file
+ZT --> G --: archive completed
+G --> D --: archive task finished
+@enduml

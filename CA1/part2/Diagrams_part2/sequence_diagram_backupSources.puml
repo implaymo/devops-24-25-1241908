@@ -1,0 +1,15 @@
+@startuml Backup_Task_Sequence
+skinparam sequence {
+  LifeLineBackgroundColor #application
+}
+actor Developer as D
+participant "Gradle" as G
+participant "CopyTask" as CT
+
+D -> G++: invoke backupSources task
+G -> CT ++: ./gradlew backupSrc
+CT -> CT: locate 'src' folder
+CT -> CT: copy contents to backup folder
+CT --> G--: backup completed
+G --> D--: backup task finished
+@enduml
