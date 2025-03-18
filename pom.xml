@@ -61,11 +61,8 @@
 		</pluginManagement>
 	</build>
 	<modules>
-		<module>basic</module>
-		<module>hypermedia</module>
-		<module>conditional</module>
-		<module>events</module>
-		<module>security</module>
+		<module>CA1/part1/part1_mercurial/basic</module>
+		<module>CA1/part1/part1_git/basic</module>
 	</modules>
 
 </project>
