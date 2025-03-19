@@ -38,7 +38,7 @@ This guide focuses on practicing Gradle using a simple example application. Stud
 ## Setting Up the Project
 
 ### Create the Directory and Clone the Repository
-Begin by creating a new directory for the assignment at **/CA2/Part1**. Once the directory is set up, clone the example application from the provided Bitbucket repository. This repository includes a **build.gradle** file and the Gradle Wrapper, ensuring a consistent build environment.
+Begin by creating a new directory for the assignment at **/CA1/Part2**. Once the directory is set up, clone the example application from this [Bitbucket repository](https://bitbucket.org/pssmatos/gradle_basic_demo/src). This repository includes a **build.gradle** file and the Gradle Wrapper, ensuring a consistent build environment.
 
 ### Verify Gradle Installation
 After cloning the project, check that Gradle is installed and properly configured by running the following command in the terminal:
