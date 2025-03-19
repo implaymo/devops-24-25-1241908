@@ -40,3 +40,12 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+tasks.register('copyJarToDist', Copy) {
+	dependsOn jar
+	from jar.archiveFile
+	into "${projectDir}/dist"
+	doFirst {
+		mkdir "${projectDir}/dist"
+	}
+}
