@@ -1,0 +1,26 @@
+<ivy-module version="2.0">
+    <info organisation="com.greglturnquist" module="react-and-spring-data-rest-basic-ant" revision="0.0.1-SNAPSHOT" status="integration"/>
+
+    <configurations defaultconf="compile,runtime">
+        <conf name="compile" description="Compile dependencies"/>
+        <conf name="runtime" description="Runtime dependencies"/>
+        <conf name="testCompile" extends="compile" description="Test compile dependencies"/>
+        <conf name="testRuntime" extends="runtime,testCompile" description="Test runtime dependencies"/>
+        <conf name="developmentOnly" description="Development-only dependencies"/>
+    </configurations>
+
+    <dependencies>
+        <dependency org="org.springframework.boot" name="spring-boot-starter" rev="3.4.3"/>
+        <dependency org="org.springframework.boot" name="spring-boot-starter-data-jpa" rev="3.4.3" conf="compile->default"/>
+        <dependency org="org.springframework.boot" name="spring-boot-starter-data-rest" rev="3.4.3" conf="compile->default"/>
+        <dependency org="org.springframework.boot" name="spring-boot-starter-thymeleaf" rev="3.4.3" conf="compile->default"/>
+        <dependency org="org.springframework.boot" name="spring-boot-starter-web" rev="3.4.3" conf="compile->default"/>
+        <dependency org="org.springframework.boot" name="spring-boot-starter-jdbc" rev="3.4.3" conf="compile->default"/>
+        <dependency org="org.springframework.boot" name="spring-boot-devtools" rev="3.4.3" conf="developmentOnly->default"/>
+        <dependency org="com.h2database" name="h2" rev="2.2.224" conf="runtime->default"/>
+        <dependency org="org.springframework.boot" name="spring-boot-starter-test" rev="3.4.3" conf="testCompile->default"/>
+        <dependency org="org.junit.platform" name="junit-platform-launcher" rev="1.10.0" conf="testRuntime->default"/>
+        <dependency org="org.springframework" name="spring-beans" rev="6.2.3"/>
+        <dependency org="org.springframework" name="spring-context" rev="6.2.3"/>
+    </dependencies>
+</ivy-module>
