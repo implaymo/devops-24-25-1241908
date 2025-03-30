@@ -166,6 +166,7 @@ logs
 **/*.back.*
 
 node_modules
+node
 bower_components
 
 *.sublime*
