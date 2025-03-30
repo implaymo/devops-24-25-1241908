@@ -40,16 +40,16 @@ This guide focuses on practicing Gradle and creating a Spring Boot application. 
 2. **Initialize a Gradle Project:**
     - Use [Spring Initializr](https://start.spring.io) to generate a Gradle-based Spring Boot project.
     - Choose the following requirements:
-      - Project:
-        - Gradle - Groovy
-      - Language: 
-        - Java
-      - Spring Boot:
-        - 3.4.3
-      - Packaging:
-        - Jar
-      - Java:
-        - 17
+        - Project:
+            - Gradle - Groovy
+        - Language:
+            - Java
+        - Spring Boot:
+            - 3.4.3
+        - Packaging:
+            - Jar
+        - Java:
+            - 17
     - Select dependencies:
         - Rest Repositories
         - Thymeleaf
@@ -147,147 +147,219 @@ This guide focuses on practicing Gradle and creating a Spring Boot application. 
     git push origin ca1-part3
     ```
 ---
-
 ## Alternative Solution
-This section provides an overview of the conversion from Maven to Gradle and insights into key decisions made.
 
-### Achieving the Same Setup with Maven
-To replicate the functionality achieved with Gradle, I explored how to configure Maven for the Spring Boot application. This alternative solution ensures that frontend assets, custom build tasks, and file management are integrated seamlessly within a Maven-based setup. Below is a structured breakdown of how this can be accomplished using Maven.
+### Step-by-Step Guide: Migrating from Gradle to Ant
 
-### Project configuration
-A pom.xml file was created to define the project structure, including necessary dependencies for REST, Thymeleaf, JPA, and H2. Here is a key snippet of the dependencies section:
-```xml
-<dependencies>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-thymeleaf</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-data-rest</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <scope>runtime</scope>
-    </dependency>
-</dependencies>
+This guide outlines the process of converting a Spring Boot project from Gradle to Ant, using Apache Ivy for dependency management. The provided `build.xml` and `ivy.xml` files serve as the foundation for this migration.
+
+### Step 1: Install Apache Ant
+- Download and install Apache Ant.
+- If you're using Windows, set up the ANT_HOME environment variable to point to the Ant installation directory. Then, add the bin folder inside ANT_HOME to your system's PATH variable to enable Ant commands in the terminal.
+- On macOS and Linux, you can install Ant using a package manager such as Homebrew (brew install ant) or APT (sudo apt install ant).
+### Step 2: Install Apache Ivy
+Install Apache Ivy and move the .jar file to Apache Ant "lib" folder.
+
+### Step 3: Set Up the Project Structure
+Ensure that your project follows a standard structure compatible with Ant:
+
+```
+myapp/
+├── src/
+│   ├── main/
+│   │   ├── java/         # Application source code
+│   │   ├── resources/    # Configuration and static files
+│   ├── test/            # Unit tests
+├── build/               # Compiled output
+├── dist/                # Packaged JAR output
+├── antlib/              # Manual Spring Boot dependencies
+├── lib/                 # Dependencies
+├── build.xml            # Ant build script
+├── ivy.xml              # Dependency management
+├── ivysettings.xml      # Ivy repository configuration
 ```
 
-### Integrating Frontend Support
-To enable frontend builds within Maven, I configured the frontend-maven-plugin to manage Node.js, npm installation, and the Webpack build process:
-```xml
-<plugins>
-    <plugin>
-        <groupId>com.github.eirslett</groupId>
-        <artifactId>frontend-maven-plugin</artifactId>
-        <version>1.11.0</version>
-        <configuration>
-            <nodeVersion>v16.20.2</nodeVersion>
-            <workingDirectory>src/main/resources/static</workingDirectory>
-        </configuration>
-        <executions>
-            <execution>
-                <id>install-node</id>
-                <goals>
-                    <goal>install-node-and-npm</goal>
-                </goals>
-            </execution>
-            <execution>
-                <id>npm-install</id>
-                <goals>
-                    <goal>npm</goal>
-                </goals>
-                <configuration>
-                    <arguments>install</arguments>
-                </configuration>
-            </execution>
-            <execution>
-                <id>npm-build</id>
-                <goals>
-                    <goal>npm</goal>
-                </goals>
-                <configuration>
-                    <arguments>run build</arguments>
-                </configuration>
-            </execution>
-        </executions>
-    </plugin>
-</plugins>
-```
-### Automating JAR Deployment
-To copy the compiled JAR file to a dist directory, I utilized the maven-resources-plugin:
-```xml
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-resources-plugin</artifactId>
-    <version>3.2.0</version>
-    <executions>
-        <execution>
-            <id>copy-jar</id>
-            <phase>package</phase>
-            <goals>
-                <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-                <outputDirectory>${project.build.directory}/dist</outputDirectory>
-                <resources>
-                    <resource>
-                        <directory>${project.build.directory}</directory>
-                        <includes>
-                            <include>*.jar</include>
-                        </includes>
-                    </resource>
-                </resources>
-            </configuration>
-        </execution>
-    </executions>
-</plugin>
-```
-### Cleaning Webpack Build Files
-To ensure that stale frontend files are removed during the clean process, the maven-clean-plugin was customized:
-```xml
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-clean-plugin</artifactId>
-    <version>3.1.0</version>
-    <executions>
-        <execution>
-            <id>delete-webpack-files</id>
-            <phase>clean</phase>
-            <goals>
-                <goal>clean</goal>
-            </goals>
-            <configuration>
-                <filesets>
-                    <fileset>
-                        <directory>src/main/resources/static/built</directory>
-                        <includes>
-                            <include>*</include>
-                        </includes>
-                    </fileset>
-                </filesets> 
-            </configuration>
-        </execution>
-    </executions>
-</plugin>
-```
-### Maven vs. Gradle: A Comparative Analysis
-To make an informed decision on whether to use Maven or Gradle, I analyzed their core characteristics in the following comparison:
+### Step 2: Configure Dependency Management with Ivy
+Use `ivy.xml` to define dependencies and `ivysettings.xml` to specify the repository resolver:
 
-| Feature            | Maven                                      | Gradle                                      |
-|--------------------|-------------------------------------------|---------------------------------------------|
-| **Build Language** | XML-based (`pom.xml`)                     | Uses Groovy/Kotlin DSL (`build.gradle`)     |
-| **Performance**    | Sequential execution, slower builds       | Incremental builds for better performance  |
-| **Flexibility**    | Strict lifecycle phases, less adaptable   | Highly customizable with scripting         |
-| **Dependency Management** | Centralized repository system | Advanced dependency resolution |
-| **Ease of Use**    | Standardized and predictable              | More flexible but has a learning curve     |
-| **Plugins**        | Well-documented but rigid                 | Extensive, easier to customize             |
-| **Community Support** | Large, well-established ecosystem   | Growing adoption with strong support       |
+1. **Define dependencies in `ivy.xml`**:
+   ```xml
+   <ivy-module version="2.0">
+       <info organisation="com.greglturnquist" module="react-and-spring-data-rest-basic-ant" revision="0.0.1-SNAPSHOT" status="integration"/>
+       <configurations defaultconf="compile,runtime">
+           <conf name="compile" description="Compile dependencies"/>
+           <conf name="runtime" description="Runtime dependencies"/>
+           <conf name="testCompile" extends="compile" description="Test compile dependencies"/>
+           <conf name="testRuntime" extends="runtime,testCompile" description="Test runtime dependencies"/>
+           <conf name="developmentOnly" description="Development-only dependencies"/>
+       </configurations>
+       <dependencies>
+           <dependency org="org.springframework.boot" name="spring-boot-starter" rev="3.4.3"/>
+           <dependency org="org.springframework.boot" name="spring-boot-starter-data-jpa" rev="3.4.3" conf="compile->default"/>
+           <dependency org="org.springframework.boot" name="spring-boot-starter-data-rest" rev="3.4.3" conf="compile->default"/>
+           <dependency org="org.springframework.boot" name="spring-boot-starter-thymeleaf" rev="3.4.3" conf="compile->default"/>
+           <dependency org="org.springframework.boot" name="spring-boot-starter-web" rev="3.4.3" conf="compile->default"/>
+           <dependency org="org.springframework.boot" name="spring-boot-starter-jdbc" rev="3.4.3" conf="compile->default"/>
+           <dependency org="org.springframework.boot" name="spring-boot-devtools" rev="3.4.3" conf="developmentOnly->default"/>
+           <dependency org="com.h2database" name="h2" rev="2.2.224" conf="runtime->default"/>
+           <dependency org="org.springframework.boot" name="spring-boot-starter-test" rev="3.4.3" conf="testCompile->default"/>
+           <dependency org="org.junit.platform" name="junit-platform-launcher" rev="1.10.0" conf="testRuntime->default"/>
+           <dependency org="org.springframework" name="spring-beans" rev="6.2.3"/>
+           <dependency org="org.springframework" name="spring-context" rev="6.2.3"/>
+       </dependencies>
+   </ivy-module>
+   ```
+
+2. Create antlib folder and **add specific Spring Boot dependencies** to it:
+
+- Go to Maven Repository and download **.jar** files from the following dependencies:
+    - spring-boot-antlib-3.4.3.jar
+    - spring-boot-loader-tools-3.4.3.jar
+    - spring-core-6.2.3.jar
+
+
+3. **Configure the Ivy resolver in `ivysettings.xml`**:
+   ```xml
+   <ivysettings>
+       <settings defaultResolver="central"/>
+       <resolvers>
+           <ibiblio name="central" m2compatible="true"/>
+       </resolvers>
+   </ivysettings>
+   ```
+
+### Step 3: Define Build Tasks in `build.xml`
+Ant tasks are specified in `build.xml`.
+
+**Create a build.xml** file with the following code:
+
+```xml
+<project
+        xmlns:ivy="antlib:org.apache.ivy.ant"
+        xmlns:spring-boot="antlib:org.springframework.boot.ant"
+        name="myapp" default="build">
+
+    <!-- Define properties -->
+    <property name="build.dir" location="build/classes"/>
+    <property name="dist.dir" location="dist"/>
+    <property name="projectName" value="myapp"/>
+    <property name="main-class" value="com.greglturnquist.payroll"/>
+
+    <!-- Debug step: List all files in antlib directory -->
+    <target name="debug">
+        <echo message="Listing JAR files in antlib directory:"/>
+        <pathconvert pathsep="${line.separator}    " property="antlib.jars">
+            <fileset dir="antlib" includes="*.jar"/>
+        </pathconvert>
+        <echo message="    ${antlib.jars}"/>
+    </target>
+
+    <target name="copy-resources" depends="init">
+        <echo message="Copying resources to build/classes" />
+        <copy todir="build/classes">
+            <fileset dir="src/main/resources">
+                <include name="**/*"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="jar" depends="compile, copy-resources" description="Package output into JAR">
+        <mkdir dir="${dist.dir}" />
+        <jar jarfile="${dist.dir}/${projectName}.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main-class}" />
+            </manifest>
+        </jar>
+    </target>
+
+    <path id="antlib.classpath">
+        <fileset dir="antlib" includes="*.jar"/>
+    </path>
+
+    <!-- Define ivy tasks -->
+    <target name="resolve" description="--> retrieve dependencies with ivy">
+        <ivy:retrieve pattern="lib/[artifact]-[revision].[ext]" />
+    </target>
+
+    <target name="classpaths" depends="resolve">
+        <path id="compile.classpath">
+            <fileset dir="lib" includes="*.jar" />
+        </path>
+    </target>
+
+    <target name="init" depends="classpaths">
+        <mkdir dir="build/classes" />
+    </target>
+
+    <target name="compile" depends="init" description="compile">
+        <javac srcdir="src/main/java" destdir="build/classes" classpathref="compile.classpath" />
+    </target>
+
+    <!-- Define Spring Boot tasks with explicit loader tools -->
+    <target name="define-spring-boot-tasks" depends="classpaths">
+        <taskdef uri="antlib:org.springframework.boot.ant"
+                 resource="org/springframework/boot/ant/antlib.xml">
+            <classpath>
+                <fileset dir="antlib" includes="*.jar"/>
+                <fileset dir="lib" includes="spring-boot-loader-tools-*.jar"/>
+                <path refid="compile.classpath"/>
+            </classpath>
+        </taskdef>
+    </target>
+
+    <target name="build" depends="compile,copy-resources,define-spring-boot-tasks">
+        <spring-boot:exejar destfile="build/myapp.jar" classes="build/classes">
+            <spring-boot:lib>
+                <fileset dir="lib" />
+            </spring-boot:lib>
+        </spring-boot:exejar>
+    </target>
+
+    <target name="run" depends="build">
+        <java jar="build/myapp.jar" fork="true">
+            <arg line="--spring.profiles.active=dev"/>
+        </java>
+    </target>
+
+    <target name="createDistDir">
+        <mkdir dir="${dist.dir}"/>
+    </target>
+
+    <target name="copyJarToDist" depends="jar, createDistDir">
+        <copy file="${dist.dir}/${projectName}.jar" todir="${dist.dir}"/>
+    </target>
+
+</project>
+```
+
+### Step 4: Execute the Ant Build
+To build and run the project, execute the following commands:
+
+```sh
+ant resolve    # Download dependencies
+ant jar        # Compile and package the application
+ant run        # Run the application
+```
+### Step 4: Execute Copy task
+To execute copy task just like in Gradle, execute the following command:
+```sh
+ant copyJarToDist
+```
+
+### Comparison: Gradle vs. Ant
+
+| Feature                | Gradle                                        | Ant                                  |
+|------------------------|-----------------------------------------------|--------------------------------------|
+| Build Script Language | Groovy/Kotlin (Declarative)                   | XML (Imperative)                     |
+| Dependency Management | Built-in via Maven Central/Repositories       | Apache Ivy (Separate Configuration) |
+| Performance           | Faster (Incremental Builds, Parallel Execution) | Slower (Executes Every Task Fully)  |
+| Plugin Support        | Extensive (Plugins for Various Tasks)         | Limited (Requires Manual Configuration) |
+| Learning Curve        | Moderate (DSL-Based, More Concise)            | Steeper (XML-Based, Verbose)        |
+| Build Flexibility     | Highly Flexible (Task Graphs, Lazy Execution) | Less Flexible (Strict Task Execution Order) |
+| Built-in Support for Spring Boot | Yes (Spring Boot Plugin)           | No (Requires Manual Configuration) |
+| Community Support     | Large and Active                              | Smaller but Still Maintained        |
+
+Ant, while a more traditional build tool, offered a functional pathway to replicate the build process initially established with Gradle for our Spring Boot project. The process of converting Gradle's dynamic configurations to Ant's explicit XML structure highlighted Ant's capacity for precise build definition and control. Although requiring more manual configuration and verbose scripting compared to Gradle, Ant's inherent simplicity and direct execution model allowed for a clear understanding of each build step. Despite the absence of Gradle's sophisticated dependency resolution and performance enhancements, such as incremental compilation, Ant's proven reliability and cross-platform compatibility demonstrated its enduring relevance in scenarios prioritizing straightforward, explicit build management
 
 ---
 
