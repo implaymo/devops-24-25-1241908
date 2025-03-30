@@ -12,6 +12,24 @@
         <echo message="    ${antlib.jars}"/>
     </target>
 
+    <target name="copy-resources" depends="init">
+        <echo message="Copying resources to build/classes" />
+        <copy todir="build/classes">
+            <fileset dir="src/main/resources">
+                <include name="**/*"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="jar" depends="compile, copy-resources" description="Package output into JAR">
+        <mkdir dir="${dist.dir}" />
+        <jar jarfile="${dist.dir}/${projectName}.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main-class}" />
+            </manifest>
+        </jar>
+    </target>
+
     <path id="antlib.classpath">
         <fileset dir="antlib" includes="*.jar"/>
     </path>
@@ -47,11 +65,18 @@
         </taskdef>
     </target>
 
-    <target name="build" depends="compile,define-spring-boot-tasks">
-        <spring-boot:exejar destfile="build/myapp.jar" classes="build/classes">
+    <target name="build" depends="compile,copy-resources,define-spring-boot-tasks">
+    <spring-boot:exejar destfile="build/myapp.jar" classes="build/classes">
             <spring-boot:lib>
                 <fileset dir="lib" />
             </spring-boot:lib>
         </spring-boot:exejar>
     </target>
+
+    <target name="run" depends="build">
+        <java jar="build/myapp.jar" fork="true">
+            <arg line="--spring.profiles.active=dev"/>
+        </java>
+    </target>
+
 </project>
