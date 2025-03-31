@@ -5,33 +5,31 @@
 
 1. [Introduction](#introduction)
 2. [Steps to Follow](#steps-to-follow)
-    - [Create a New Branch](#1-create-a-new-branch)
-    - [Initialize a Gradle Project](#2-initialize-a-gradle-project)
-    - [Extract and Set Up the Project](#3-extract-and-set-up-the-project)
-    - [Replace Source Code](#4-replace-source-code)
-    - [Run the Application](#5-run-the-application)
-    - [Add Frontend Support](#6-add-frontend-support)
-    - [Configure Webpack Execution in package.json](#7-configure-webpack-execution-in-packagejson)
-    - [Build and Run Application](#8-build-and-run-application)
-    - [Automate JAR Deployment](#9-automate-jar-deployment)
-    - [Clean Generated Frontend Files](#10-clean-generated-frontend-files)
-    - [Testing and Finalization](#11-testing-and-finalization)
-    - [Tagging the Repository](#12-tagging-the-repository)
+    1. [Create a New Branch](#1-create-a-new-branch)
+    2. [Initialize a Gradle Project](#2-initialize-a-gradle-project)
+    3. [Extract and Set Up the Project](#3-extract-and-set-up-the-project)
+    4. [Replace Source Code](#4-replace-source-code)
+    5. [Run the Application](#5-run-the-application)
+    6. [Add Frontend Support](#6-add-frontend-support)
+    7. [Configure Webpack Execution](#7-configure-webpack-execution-in-packagejson)
+    8. [Build and Run Application](#8-build-and-run-application)
+    9. [Automate JAR Deployment](#9-automate-jar-deployment)
+    10. [Clean Generated Frontend Files](#10-clean-generated-frontend-files)
+    11. [Testing and Finalization](#11-testing-and-finalization)
+    12. [Tagging the Repository](#12-tagging-the-repository)
 3. [Alternative Solution](#alternative-solution)
-    - [Analysis of Alternatives](#analysis-of-alternatives)
-    - [Maven vs. Gradle](#maven-vs-gradle)
-    - [Why Use Gradle?](#why-use-gradle)
-    - [Challenges Faced](#challenges-faced)
+    - [Step-by-Step Guide: Migrating from Gradle to Ant](#step-by-step-guide-migrating-from-gradle-to-ant)
+    - [Comparison: Gradle vs. Ant](#comparison-gradle-vs-ant)
 4. [Conclusion](#conclusion)
 
 ---
 
-### Introduction
+## Introduction
 This guide focuses on practicing Gradle and creating a Spring Boot application. You will set up and modify a Gradle project, add custom tasks, and integrate unit testing. Key tasks include executing the provided application, adding Gradle tasks for running a server, performing backups, and creating a zip archive. Proper version control practices, including multiple commits, tagging, and using issues, are required.
 
 --- 
 
-### Steps to Follow
+## Steps to Follow
 1. **Create a New Branch:**
     - Name: `tut-basic-gradle`
     - Checkout the branch and use it for all modifications.
