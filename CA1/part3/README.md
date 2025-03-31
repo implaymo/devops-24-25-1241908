@@ -1,5 +1,4 @@
-# CA1, Part 2: Technical Report : Tutorial application to Gradle
-
+ # CA1, Part 3: Technical Report : Converting the basic version of the Tutorial application to Gradle.
 ---
 
 ## Table of Contents
