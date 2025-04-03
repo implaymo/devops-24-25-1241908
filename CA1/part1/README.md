@@ -490,14 +490,17 @@ With these modifications, my employee model is now more comprehensive, making it
 The final state of the application is illustrated below:
 
 
-![](basic/images/results_devops.png)
+![](images/results_devops.png)
+
 ### Branches
 This assignment taught me the value of using branches to isolate changes for specific features or fixes. This approach helps maintain a stable main codebase while also providing a clear and well-organized record of changes.
-![](basic/images/branch_result_devops.png)
+
+![](images/branch_result_devops.png)
 
 ### Tags
 Using tags taught me how to highlight key milestones in the project's history. This is essential for monitoring the project's progress over time and allows for quick restoration of previous versions when needed.
-![](basic/images/tags_result_devops.png)
+
+![](images/tags_result_devops.png)
 
 ### Issues
 During the development process, four issues were created on GitHub to track and resolve problems. These issues were tracked by including "#1," "#2," "#3," and "#4" in the commit messages.
