@@ -313,11 +313,32 @@ To build the project, execute the following command within the project directory
 ```
 
 ### Step 4: Run Tasks
-Since the virtual machine setup is based on Ubuntu Server without a desktop environment, running GUI applications like the project’s chat client is not feasible on the VM, so you won't be able to execute the task runClient.
-To check if the project works on your VM run the following commands:
+Since the virtual machine setup is based on Ubuntu Server without a desktop environment, running GUI applications like the project’s chat client isn't possible on the VM, so you won't be able to execute the task runClient on the VM.
+What you should do is the following:
 
+1. In your VM run the following command:
 ```sh
 ./gradlew runServer
+```
+
+This command will start the server, allowing clients to communicate with each other.
+
+
+2. You should open a terminal on the host machine, navigate to the gradle_basic_demo directory (ensure it is cloned on the host as well), and run the client component using the command below. This allows the client on the host machine to communicate with the server running on the VM by specifying the VM’s IP address and the port number:
+```sh
+./gradlew runClient --args="192.168.131.5 59001"
+```
+
+This way you will be able to establish several connections to the server running on your VM and see the GUI interface on your host machine.
+
+You should have the following result:
+
+![](images/runClient_Server_task.png)
+
+
+Execute the other tasks with the following commands:
+
+```sh
 ./gradlew backupSrc
 ./gradlew archiveSrcIntoZip
 ```
@@ -331,7 +352,7 @@ You should get the following results:
 ## Execute the Spring Boot react and basic tutorial project - CA1 - Part 3
 
 
-### Step 2: Build the Project in the Virtual Machine
+### Step 1: Build the Project in the Virtual Machine
 
 You should go to the basic folder within the gradle_basic_demo directory to begin the process. To build the application, execute the following command:
 
@@ -339,14 +360,14 @@ You should go to the basic folder within the gradle_basic_demo directory to begi
 ./gradlew build
 ```
 
-### Step 3: Execute Spring Boot Application
+### Step 2: Execute Spring Boot Application
 After the build is complete, start the Spring Boot server using the command:
 
 ```sh
 ./gradlew bootRun
 ```
 
-### Step 4: Verify 
+### Step 3: Verify 
 With the server now running, you should go to a web browser and enter the following URL:
 
 ```
